@@ -8,6 +8,6 @@ How to run the app:
 
 Then to run the server:
 
-> npm run deStart
+> npm run devStart
 
 Go to http://localhost:3000/restaurants
