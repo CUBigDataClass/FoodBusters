@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { YelpAPIService } from './yelp-api.service';
+import { YelpService } from './yelp.service';
 
-describe('YelpAPIService', () => {
-  let service: YelpAPIService;
+describe('YelpService', () => {
+  let service: YelpService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(YelpAPIService);
+    service = TestBed.inject(YelpService);
   });
 
   it('should be created', () => {

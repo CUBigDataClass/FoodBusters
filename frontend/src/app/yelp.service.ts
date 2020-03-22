@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class YelpAPIService {
+export class YelpService {
 
   constructor(private http: HttpClient) { }
 

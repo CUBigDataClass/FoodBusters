@@ -1,39 +1,33 @@
 export class Business {
-    is_claimed : Boolean;
-    rating : Number;
-    rating_img_url: String;
-    review_count: Number;
+    id: String;
+    alias: String;
     name: String;
-    rating_img_url_small: String;
+    is_closed: Boolean;
     url: String;
+    review_count: Number;
     categories: {
         alias: String;
         title: String;
     };
-    phone: String;
+    rating : Number;
+    coordinates: {
+        latitude: Number;
+        longitude:Number;
+    };
+    transactions: Object;
     price: String;
-    image_url: String;
-    snippet_image_url: String;
-    display_phone: String;
-    rating_img_url_large: String;
-    id: String;
-    is_closed: Boolean;
     location:{
         address1: String;
         address2: String;
         address3: String;
         city: String;
+        zip_code: String;
         country: String;
-        display_address: Object;
         state: String;
-        zip_code:String;
+        display_address: Object;
+      
     };
-    transactions: Object;
+    phone: String;
+    display_phone: String;
     distance: Number;
-    coordinates: {
-        latitude: Number;
-        longitude:Number;
-    };
-    
-    title: String;
 }
