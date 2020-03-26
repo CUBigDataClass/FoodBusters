@@ -10,7 +10,9 @@ export class YelpService {
   constructor(private http: HttpClient) { }
 
   getSearchBuiness(): Observable<any> {
-    return this.http.get('http://localhost:3000/business');
+    var test = this.http.get('http://localhost:3000/business');
+    console.log(test);
+    return test;
   }
 
 }
