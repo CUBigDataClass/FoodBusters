@@ -28,6 +28,6 @@ app.use('/', restaurantRouter);
 //run on localhost port 3000
 app.listen(3000, () => console.log("server started"))
 
-
+//how to run > npm run devStart
 
 

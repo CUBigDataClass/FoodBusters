@@ -22,11 +22,14 @@ Backend
 
 > npm run devStart
 
-Go to 'http://localhost:3000/business'
+Go to  `http://localhost:3000/business`
 
 if something error, you need to install
 
 > npm install mongoose      //for mongoDB
 
 > npm install mongodb --save  //save MongoDB 
+
+> npm install -g nodemon
+
 
