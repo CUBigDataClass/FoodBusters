@@ -7,6 +7,7 @@ import { MapComponent } from './map/map.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -19,7 +20,11 @@ import { MaterialModule } from './material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA8KjAWFi0vWlwGrYxfJnwvafEgotdLVwU',
+      libraries: ['places']
+    })
   ],
   exports:[
     MatToolbarModule
