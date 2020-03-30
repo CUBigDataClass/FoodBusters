@@ -2,8 +2,14 @@
 require('dotenv').config();
 
 const express = require('express');
+var bodyParser = require('body-parser');
+const cors = require('cors');
 
 
+const app = express();
+
+app.use(bodyParser.json());
+app.use(cors());
 
 //create to mongodb database
 const mongoose = require('mongoose'); 
@@ -12,15 +18,16 @@ const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));
 
+app.use(express.json())
 
-const restaurantRouter = require('./routes/restaurants');
-app.use('/restaurants', restaurantRouter);
+const restaurantRouter = require('./routes/routes');
+app.use('/', restaurantRouter);
 
 
 
 //run on localhost port 3000
 app.listen(3000, () => console.log("server started"))
 
-
+//how to run > npm run devStart
 
 

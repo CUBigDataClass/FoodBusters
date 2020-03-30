@@ -20,14 +20,16 @@ var Business = mongoose.model('Business');
 
 
 const searchRequest = {
-    term:'Four Barrel Coffee',
-    location: 'san francisco, ca'
+    term:'restaurants',
+    location: 'boulder, co'
   };
 
 client.search(searchRequest).then(response => {
     const firstResult = response.jsonBody.businesses;
     const prettyJson = JSON.stringify(firstResult, null, 4);
     var jsonBussObj = JSON.parse(prettyJson)
+
+    console.log(jsonBussObj[1])
 
     app.get('/business', async (req, res) => {
         try {
@@ -46,7 +48,7 @@ client.search(searchRequest).then(response => {
     console.log("length", l);
     for(var i = 0; i<l;i++){
         var bussiObj = jsonBussObj[i];
-        console.log(bussiObj.rating);
+
         var newBusiness = new Business();
         newBusiness.is_claimed  = bussiObj.is_claimed;
         newBusiness.rating  = bussiObj.rating;
