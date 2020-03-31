@@ -1,0 +1,35 @@
+.mat-toolbar.mat-primary {
+  background: #79B9F3;
+  color: #fff;
+}
+.navbar{
+	justify-content: space-between;
+}
+
+a{
+	padding-right: 2rem;
+}
+
+#container {
+  display: flex;
+  height: 100%;
+}
+
+#idmap {
+  height: 500px;
+}
+.left-half {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 20px;
+  left: 0px;
+  width: 70%;
+}
+
+.right-half {
+  position: absolute;
+  padding-top: 20px;
+  padding-right: 20px;
+  right: 0px;
+  width: 30%;
+}
