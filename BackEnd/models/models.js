@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Defining a schema for Business
-var businessSchema = new mongoose.Schema({
+var businessSchema = new Schema({
     id: String,
     alias: String,
     name: String,
