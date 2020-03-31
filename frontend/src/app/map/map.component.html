@@ -1,2 +1,7 @@
 <p>map will be here!</p>
-<P>{{ title }}</P>
+<P> Restaurants in Boulder </P>
+<ul>
+    <li *ngFor="let b of business">
+        {{ b.name }}
+    </li>
+</ul>

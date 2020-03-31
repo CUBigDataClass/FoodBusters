@@ -17,8 +17,8 @@ export class MapComponent implements OnInit {
 
   constructor(public yelpService : YelpService) { }
 
-  getSearchBuiness(): void {
-    this.yelpService.getSearchBuiness()
+  getSearchBuiness(city): void {
+    this.yelpService.getSearchBuiness(city)
       .subscribe(data => {
         this.business = data;
         console.log(this.business);
@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
    
-    this.getSearchBuiness();
+    this.getSearchBuiness('boulder');
   }
 
 }

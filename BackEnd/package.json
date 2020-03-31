@@ -4,13 +4,11 @@
   "description": "create node.js, mongodb dabase",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.2",
     "nodemon": "^2.0.2",

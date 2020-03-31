@@ -20,9 +20,9 @@ Backend
 
 > cd BackEnd
 
-> npm run devStart
+> npm start
 
-Go to  `http://localhost:3000/business`
+Go to  `http://localhost:3000/business/`
 
 if something error, you need to install
 
