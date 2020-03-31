@@ -25,7 +25,7 @@ a{
   padding-top: 20px;
   padding-left: 20px;
   left: 0px;
-  width: 60%;
+  width: 90%;
 }
 
 .right-half {
@@ -33,7 +33,7 @@ a{
   padding-top: 20px;
   padding-left: 100px;
   right: 0px;
-  width: 40%;
+  width: 30%;
 }
 
 :host{
@@ -46,5 +46,5 @@ a{
   flex-grow: 1;
   order: 1;
   height: 100%;
-  width: 70%;
+  width: 100%;
 }
