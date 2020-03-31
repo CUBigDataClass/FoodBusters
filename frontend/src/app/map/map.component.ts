@@ -1,7 +1,7 @@
-import { Component, OnInit, APP_ID } from '@angular/core';
-import { YelpService} from '../yelp.service';
-import { Business} from '../businessModel';
-
+import { Component, OnInit } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
+import { YelpService } from '../yelp.service';
+import { Business } from '../businessModel';
 
 @Component({
   selector: 'app-map',
@@ -10,30 +10,47 @@ import { Business} from '../businessModel';
 })
 export class MapComponent implements OnInit {
 
-  business: Business[] = [];
+    latitude: number = -23.8779431;
+    longitude: number = -49.8046873;
+    zoom:number = 15;
 
-  title = 'frontend';
+    business: Business[] = [];
+    constructor(public yelpService : YelpService) { }
 
-
-  constructor(public yelpService : YelpService) { }
-
-  getSearchBuiness(city): void {
-    this.yelpService.getSearchBuiness(city)
-      .subscribe(data => {
-        this.business = data;
-        console.log(this.business);
-      },
-      error => {
-        console.log(error);
+  
+  // Get Current Location Coordinates
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        console.log(this.latitude);
+        this.zoom = 15;
       });
+    }
   }
 
-
+  getSearchBuiness(city): void {
+  this.yelpService.getSearchBuiness(city)
+    .subscribe(data => {
+      this.business = data;
+      console.log(this.business);
+    },
+    error => {
+      console.log(error);
+    });
+}
 
 
   ngOnInit() {
-   
+    this.setCurrentLocation();
     this.getSearchBuiness('boulder');
+
   }
 
+  
 }
+  
+
+
+

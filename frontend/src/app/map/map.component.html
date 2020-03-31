@@ -1,7 +1,22 @@
 <p>map will be here!</p>
-<P> Restaurants in Boulder </P>
+
+<!-- <P> Restaurants </P>
 <ul>
     <li *ngFor="let b of business">
         {{ b.name }}
     </li>
-</ul>
+</ul> -->
+
+<!-- <agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map> -->
+
+<agm-map 
+[latitude]="latitude" 
+[longitude]="longitude" 
+[zoom]="zoom" >
+  <agm-marker 
+  [latitude]="latitude" 
+  [longitude]="longitude"></agm-marker>
+</agm-map>
+
