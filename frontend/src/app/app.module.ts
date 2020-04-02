@@ -4,34 +4,34 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { AgmCoreModule } from '@agm/core';
+import { LeafMapComponent } from './leaf-map/leaf-map.component';
 
 
 
 @NgModule({
+
   declarations: [
     AppComponent,
-    MapComponent
+    LeafMapComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA8KjAWFi0vWlwGrYxfJnwvafEgotdLVwU',
-      libraries: ['places']
-    })
   ],
+
   exports:[
     MatToolbarModule,
     HttpClientModule,
   ],
+
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
