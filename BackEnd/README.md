@@ -6,6 +6,8 @@ How to run the app:
 
 > npm install --save-dev nodemon
 
+>npm install cors
+
 Then to run the server:
 
 > npm start
