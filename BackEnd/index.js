@@ -17,18 +17,21 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose'); 
 
 // mongoose connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/yelpApiDb', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/yelpApiDb', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
+// mongoose.connect('mongodb://mongo:27017/yelpAPi')
 
 app.use(bodyParser.json());
 app.use(cors());
 
 const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to Database'));
+
+// db.on('error', (error) => console.error(error));
+// db.once('open', () => console.log('Connected to Database'));
+
 
 app.use(express.json())
 
@@ -43,6 +46,6 @@ app.listen(PORT, () =>
     console.log(`Your server is running on port ${PORT}`)
 );
 
-//how to run > npm run devStart
+//how to run > npm start
 
 

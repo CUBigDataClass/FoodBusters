@@ -4,10 +4,20 @@ How to run the app:
 
 > npm install mongoose
 
-> npm install --save-dev dotenv nodemon
+> npm install --save-dev nodemon
 
 Then to run the server:
 
-> npm run devStart
+> npm start
 
-Go to http://localhost:3000/restaurants
+Go to `http://localhost:3000/business/ + "city name"`
+
+How to build and run in Docker
+
+> docker build
+
+> docker-compose up -d mongo
+
+> docker-compose up -d app
+
+Then go to `http://localhost:3000/business/ + "city name"`
