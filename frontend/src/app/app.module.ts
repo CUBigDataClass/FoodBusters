@@ -30,7 +30,7 @@ import { LeafMapComponent } from './leaf-map/leaf-map.component';
     HttpClientModule,
   ],
 
-  providers: [],
+  providers: [  ],
 
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,8 @@ import * as L from 'leaflet';
 import { YelpService } from '../yelp.service';
 import { Business } from '../businessModel';
 
+import { restMarker } from '../marker';
+
 @Component({
   selector: 'app-leaf-map',
   templateUrl: './leaf-map.component.html',
@@ -11,19 +13,45 @@ import { Business } from '../businessModel';
 })
 export class LeafMapComponent implements OnInit {
 
-  //crete object for business
+  //create icon for restaurants 
+  restIcon = L.icon({
+  iconUrl: '../assets/img/Minilogo.png',
+
+    iconSize: [25,25]
+  });
+
+  RestMarker = L.Marker.extend({
+
+    options: {
+        icon: this.restIcon
+    },
+
+    business: {},
+
+    setRest: function(business: Business) {
+        this.business = business;
+    },
+
+    getSearchBusiness: function(): Business{
+        return this.business;
+    }
+
+  });
+
+  //create object for business
   business: Business[] = [];
   private map: L.Map;
-  
   markers: L.Marker[];
 
   constructor(public yelpService : YelpService) { }
 
-  
- 
+  getMap() {
+    return this.map;
+  }
 
-  getSearchBuiness(city): void {
-  this.yelpService.getSearchBuiness(city)
+
+  getSearchBusiness(city): void {
+  this.yelpService.getSearchBusiness(city)
     .subscribe(data => {
       this.business = data;
       console.log(this.business);
@@ -31,7 +59,15 @@ export class LeafMapComponent implements OnInit {
     error => {
       console.log(error);
     });
-}
+  }
+
+  createRestMarkers(this) : L.markers{
+
+    var restIcon = L.icon({
+    iconUrl: '../assets/img/Minilogo.png',
+
+    iconSize: [25,25]
+    });
 
   private initMap(): void {
       // Setting location to Boulder
@@ -49,12 +85,32 @@ export class LeafMapComponent implements OnInit {
       }).addTo(this.map)
   }
 
+  this.yelpService.getSearchBusiness('boulder')
+    .subscribe(business => {
+      business.forEach(function(a) {
+
+        console.log(a.coordinates['latitude']);
+
+        var am= new this.RestMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
+
+        if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
+
+            am.setLocation(a);
+            
+            am.on('click', function() {
+              //this.restaurantInfoPannel
+            }, this);
+
+            this.markers.push(am);
+          }
+      }, this);
+    });
+
+    return markers;
+  }
 
   ngOnInit() {
     this.initMap();
-    // this.getSearchBuiness('boulder');
-
+    //this.getSearchBusiness('boulder');
   }
-
-
 }
