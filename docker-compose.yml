@@ -1,0 +1,19 @@
+version: "3.4"
+services:
+  footbuster-app:
+    container_name: footbuster-app
+    build: './frontend'
+    volumes:
+      - /usr/src/app/node_modules
+    ports:
+      - "80:80"
+      - "49153:49153"
+    links:
+      - "api-middleware:backend"   
+  api-middleware:
+    container_name: api-middleware
+    build: './backend'
+    volumes:
+      - /usr/app/server/node_modules
+    ports:
+      - "3000:3000"

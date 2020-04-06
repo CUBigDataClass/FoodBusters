@@ -22,15 +22,15 @@ const mongoose = require('mongoose');
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true
 // });
-mongoose.connect('mongodb://mongo:27017/yelpAPi')
+// mongoose.connect('mongodb://mongo:27017/yelpAPi')
 
 app.use(bodyParser.json());
 app.use(cors());
 
 const db = mongoose.connection;
 
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to Database'));
+// db.on('error', (error) => console.error(error));
+// db.once('open', () => console.log('Connected to Database'));
 
 
 app.use(express.json())

@@ -1,19 +1,22 @@
-FROM node:10
-RUN mkdir -p /usr/src/app
+
+FROM node:12.7-alpine as build
 WORKDIR /usr/src/app
-
-
-COPY  package*.json /usr/src/app/
-
-
-COPY . /usr/src/app
-
+COPY package.json ./
 RUN npm install
-
-
-EXPOSE 4200
-
-RUN npm install mongoose
-RUN npm install mongodb --save
 RUN npm install -g @angular/cli
-CMD ["ng", "serve"]
+
+COPY . ./
+
+RUN ng build --output-path=dist
+
+FROM nginx:1.16.0-alpine
+
+RUN rm -rf /usr/share/nginx/html*
+
+COPY ./dev/nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+
+EXPOSE 49153 
+
+CMD ["nginx", "-g", "daemon off;"]
