@@ -13,6 +13,29 @@ import { restMarker } from '../marker';
 })
 export class LeafMapComponent implements OnInit {
 
+  Icon = L.icon({
+    iconUrl: '../assets/img/Minilogo.png',
+
+    iconSize: [25,25]
+  });
+
+  LocationMarker = L.Marker.extend({
+
+    options: {
+        icon: this.Icon
+    },
+ 
+
+    setLocation: function(business: Business) {
+        this.business = business;
+    },
+
+    getLocation: function(): Business{
+        return this.business;
+    }
+
+  });
+
   //create object for business
   business: Business[] = [];
   private map: L.Map;
@@ -54,7 +77,7 @@ export class LeafMapComponent implements OnInit {
 
         console.log(a.coordinates['latitude']);
 
-        var am = new this.RestMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
+        var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
 
         if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
 
