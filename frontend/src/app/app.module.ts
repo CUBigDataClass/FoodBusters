@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { LeafMapComponent } from './leaf-map/leaf-map.component';
+import { InfoPanelComponent } from './info-panel/info-panel.component';
 
 
 
@@ -16,6 +17,7 @@ import { LeafMapComponent } from './leaf-map/leaf-map.component';
   declarations: [
     AppComponent,
     LeafMapComponent,
+    InfoPanelComponent,
   ],
 
   imports: [
