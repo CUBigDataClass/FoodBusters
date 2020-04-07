@@ -13,41 +13,12 @@ import { restMarker } from '../marker';
 })
 export class LeafMapComponent implements OnInit {
 
-  //create icon for restaurants 
-  restIcon = L.icon({
-  iconUrl: '../assets/img/Minilogo.png',
-
-    iconSize: [25,25]
-  });
-
-  RestMarker = L.Marker.extend({
-
-    options: {
-        icon: this.restIcon
-    },
-
-    business: {},
-
-    setRest: function(business: Business) {
-        this.business = business;
-    },
-
-    getSearchBusiness: function(): Business{
-        return this.business;
-    }
-
-  });
-
   //create object for business
   business: Business[] = [];
   private map: L.Map;
   markers: L.Marker[];
 
   constructor(public yelpService : YelpService) { }
-
-  getMap() {
-    return this.map;
-  }
 
 
   getSearchBusiness(city): void {
@@ -60,15 +31,7 @@ export class LeafMapComponent implements OnInit {
       console.log(error);
     });
   }
-
-  createRestMarkers(this) : L.markers{
-
-    var restIcon = L.icon({
-    iconUrl: '../assets/img/Minilogo.png',
-
-    iconSize: [25,25]
-    });
-
+  
   private initMap(): void {
       // Setting location to Boulder
       this.markers = [];
@@ -83,7 +46,7 @@ export class LeafMapComponent implements OnInit {
       var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
       }).addTo(this.map)
-  }
+  
 
   this.yelpService.getSearchBusiness('boulder')
     .subscribe(business => {
@@ -91,7 +54,7 @@ export class LeafMapComponent implements OnInit {
 
         console.log(a.coordinates['latitude']);
 
-        var am= new this.RestMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
+        var am = new this.RestMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
 
         if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
 
@@ -104,13 +67,13 @@ export class LeafMapComponent implements OnInit {
             this.markers.push(am);
           }
       }, this);
-    });
 
-    return markers;
+      L.featureGroup(this.markers).addTo(this.map);
+    });
   }
 
   ngOnInit() {
     this.initMap();
-    //this.getSearchBusiness('boulder');
+    this.getSearchBusiness('boulder');
   }
 }
