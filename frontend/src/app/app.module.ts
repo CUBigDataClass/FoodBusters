@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { LeafMapComponent } from './leaf-map/leaf-map.component';
-
+import { SuggestionsComponent } from './suggestions/suggestions.component'
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { LeafMapComponent } from './leaf-map/leaf-map.component';
   declarations: [
     AppComponent,
     LeafMapComponent,
+    SuggestionsComponent,
   ],
 
   imports: [
