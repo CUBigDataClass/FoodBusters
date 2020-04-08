@@ -97,15 +97,6 @@ router.get('/business/:city', async (req, res) => {
 });
 
 
-// GET all business in  boulder
-// router.get('/business/boulder', async (req, res) => {
-//     try {
-//         res.json(jsonBussObj)
-//     } catch (err) {
-//         res.status(500).json({ message: err.message})
-//     }
-// });
-
 
 
 
