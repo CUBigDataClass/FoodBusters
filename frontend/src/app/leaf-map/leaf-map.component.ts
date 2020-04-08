@@ -16,7 +16,7 @@ export class LeafMapComponent implements OnInit {
   Icon = L.icon({
     iconUrl: '../assets/img/Minilogo.png',
 
-    iconSize: [25,25]
+    iconSize: [35,35]
   });
 
   LocationMarker = L.Marker.extend({

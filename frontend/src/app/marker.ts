@@ -5,7 +5,7 @@ import { Business } from './businessModel';
 var restIcon = L.icon({
     iconUrl: '../assets/img/Minilogo.png',
 
-    iconSize: [40,40]
+    iconSize: [35,35]
 });
 
 var RestMarker = L.Marker.extend({

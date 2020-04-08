@@ -30,7 +30,7 @@ const searchCity = {
 //     jsonBussObj = JSON.parse(prettyJson);
 
 //     var l = jsonBussObj.length;
-   
+
 //     for(var i = 0; i<l;i++){
 //         var business = new Business();
 //         business.id = jsonBussObj[i].id,
@@ -49,26 +49,26 @@ const searchCity = {
 //         business.phone = jsonBussObj[i].phone,
 //         business.display_phone = jsonBussObj[i].display_phone,
 //         business.distance = jsonBussObj[i].distance,
-        
+
 //         // save the user
 //         business.save(function(err) {
 //             if (err){
-//                 console.log('Error in Saving user: '+err);  
-//                 throw err;  
-//             } 
+//                 console.log('Error in Saving user: '+err);
+//                 throw err;
+//             }
 //         });
 
 //     }
-  
+
 //     console.log('Done saving to database.');
-            
+
 
 //   }).catch(e => {
 //     console.log(e);
 //   });
 
-  
-        
+
+
 // get data of each city
 router.get('/business/:city', async (req, res) => {
     try{
@@ -97,15 +97,6 @@ router.get('/business/:city', async (req, res) => {
 });
 
 
-// GET all business in  boulder
-// router.get('/business/boulder', async (req, res) => {
-//     try {
-//         res.json(jsonBussObj)
-//     } catch (err) {
-//         res.status(500).json({ message: err.message})
-//     }
-// });
-
 
 
 
@@ -129,9 +120,28 @@ router.get('/business/:city/:id', async (req, res) => {
     }
 
 });
-          
+
+router.get('/business/:city/:id/:reviews', async (req, res) => {
+    try{
+        var id = req.params.id;
+        const idString = id.toString();
+        console.log("test id",idString);
+        client.reviews(idString).then(response => {
+            const firstResult = response.jsonBody;
+            const prettyJson = JSON.stringify(firstResult);
+            var reviewDetail = JSON.parse(prettyJson);
+            console.log(reviewDetail);
+            res.json(reviewDetail);
+        }).catch(e => {
+            console.log(e);
+        });
+    } catch (err) {
+        res.status(500).json({ message: err.message})
+    }
+
+});
+
 
 
 
 module.exports = router
-
