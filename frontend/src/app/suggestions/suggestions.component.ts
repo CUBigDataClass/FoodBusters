@@ -19,7 +19,7 @@ export class SuggestionsComponent implements OnInit {
     this.yelpService.getSearchBusiness(city)
       .subscribe(data => {
         this.business = data;
-        console.log(this.business);
+        this.sortBusinessesByRating();
       },
       error => {
         console.log(error);
@@ -28,7 +28,20 @@ export class SuggestionsComponent implements OnInit {
 
   private getSuggestions(city): void {
     this.getSearchBusiness(city);
-    console.log(this.business);
+  }
+
+  private sortBusinessesByRating(): void {
+      this.business.sort((n1,n2) => {
+          if (n1.rating > n2.rating) {
+              return -1;
+          }
+      
+          if (n1.rating < n2.rating) {
+              return 1;
+          }
+          return 0;
+      });
+      console.log(this.business);
   }
 
   ngOnInit(): void {
