@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoPanelComponent implements OnInit {
 
+  isResturantSelected: Boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

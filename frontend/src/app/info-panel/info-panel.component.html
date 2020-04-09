@@ -1,1 +1,6 @@
-<p>info-panel works!</p>
+<div *ngIf=!isResturantSelected>
+    <app-suggestions></app-suggestions>
+</div>
+<div *ngIf=isResturantSelected>
+    hi
+</div>

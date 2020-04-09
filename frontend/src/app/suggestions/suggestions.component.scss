@@ -1,0 +1,29 @@
+h2{
+    display: flex;
+    // justify-content: center;
+    margin: 0;
+}
+.mat-card {
+    width: 85%;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.mat-card-title {
+    font-size: medium;
+    margin-bottom: 0px;
+}
+
+.mat-card-image {
+    margin-bottom: 0px;
+}
+
+.mat-card-content {
+    font-size: smaller;
+    color: grey;
+}
+
+.resturantImg {
+    width: 25%;
+    padding: 10px;
+}

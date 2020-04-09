@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 
 //create to mongodb database
-const mongoose = require('mongoose'); 
+// const mongoose = require('mongoose'); 
 
 // mongoose connection
 // mongoose.Promise = global.Promise;
@@ -27,7 +27,7 @@ const mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(cors());
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
 // db.on('error', (error) => console.error(error));
 // db.once('open', () => console.log('Connected to Database'));

@@ -8,8 +8,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { LeafMapComponent } from './leaf-map/leaf-map.component';
+import { SuggestionsComponent } from './suggestions/suggestions.component'
 import { InfoPanelComponent } from './info-panel/info-panel.component';
-
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { InfoPanelComponent } from './info-panel/info-panel.component';
   declarations: [
     AppComponent,
     LeafMapComponent,
+    SuggestionsComponent,
     InfoPanelComponent,
   ],
 
@@ -25,6 +27,7 @@ import { InfoPanelComponent } from './info-panel/info-panel.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatCardModule,
   ],
 
   exports:[

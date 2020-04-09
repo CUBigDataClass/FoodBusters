@@ -1,0 +1,14 @@
+
+<h2>Popular Around You</h2>
+<div *ngFor="let b of top3Businesses">
+    <mat-card>
+        <img mat-card-image class="resturantImg" [src]="b.image_url" alt="b.name" />
+        <mat-card-title>{{b.name}}</mat-card-title>
+        <mat-card-content>
+            {{b.rating}} ({{b.review_count}})<br>
+            {{b.price}} - {{b.categories[0].title}} - {{b.location.address1}}<br>
+            <span *ngIf="!b.is_closed" style="color:green">Open</span>
+            <span *ngIf="b.is_closed" style="color:red">Closed</span>
+        </mat-card-content>
+    </mat-card>
+</div>
