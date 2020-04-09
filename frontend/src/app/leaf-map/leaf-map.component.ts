@@ -71,7 +71,7 @@ export class LeafMapComponent implements OnInit {
       }).addTo(this.map)
   
 
-  this.yelpService.getSearchBusiness('boulder')
+  this.yelpService.getSearchBusiness('denver')
     .subscribe(business => {
       business.forEach(function(a) {
 

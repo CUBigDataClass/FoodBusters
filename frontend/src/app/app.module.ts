@@ -36,4 +36,6 @@ import { InfoPanelComponent } from './info-panel/info-panel.component';
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
