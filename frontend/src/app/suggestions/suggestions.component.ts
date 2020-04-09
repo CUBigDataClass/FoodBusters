@@ -12,6 +12,7 @@ export class SuggestionsComponent implements OnInit {
 
   //create object for business
   business: Business[] = [];
+  top3Businesses: Business[] = [];
 
   constructor(public yelpService : YelpService) { }
 
@@ -20,6 +21,8 @@ export class SuggestionsComponent implements OnInit {
       .subscribe(data => {
         this.business = data;
         this.sortBusinessesByRating();
+        this.top3Businesses = this.business.slice(0,3);
+        console.log(this.top3Businesses);
       },
       error => {
         console.log(error);
@@ -32,16 +35,18 @@ export class SuggestionsComponent implements OnInit {
 
   private sortBusinessesByRating(): void {
       this.business.sort((n1,n2) => {
-          if (n1.rating > n2.rating) {
-              return -1;
-          }
-      
           if (n1.rating < n2.rating) {
               return 1;
           }
-          return 0;
+      
+          else if (n1.rating > n2.rating) {
+              return -1;
+          }
+          else return 0;
       });
-      console.log(this.business);
+      // console.log(this.business);
+      
+      
   }
 
   ngOnInit(): void {
