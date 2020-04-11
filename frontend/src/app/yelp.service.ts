@@ -21,5 +21,11 @@ export class YelpService {
     return this.http.get('http://localhost:3000/business/' + id);
   }
 
+  //get all review detail of the business by the id
+  getReviewDetail(id: any): Observable<any> {
+    return this.http.get('http://localhost:3000/reviews/' + id);
+  }
+
+
 
 }
