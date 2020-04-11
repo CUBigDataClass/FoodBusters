@@ -85,7 +85,7 @@ router.get('/business/:city', async (req, res) => {
             var businessDetail = JSON.parse(prettyJson);
             // console.log(businessDetail);
             var business = Business.find();
-            console.log(business)
+            // console.log(business)
             res.json(businessDetail);
         }).catch(e => {
             console.log(e);
@@ -110,7 +110,7 @@ router.get('/business/:city/:id', async (req, res) => {
             const firstResult = response.jsonBody;
             const prettyJson = JSON.stringify(firstResult);
             var businessDetail = JSON.parse(prettyJson);
-            console.log(businessDetail);
+            // console.log(businessDetail);
             res.json(businessDetail);
         }).catch(e => {
             console.log(e);
@@ -121,16 +121,21 @@ router.get('/business/:city/:id', async (req, res) => {
 
 });
 
-router.get('/business/:city/:id/:reviews', async (req, res) => {
+router.get('/reviews/:id', async (req, res) => {
     try{
+        // get id parameter from client, id is the unique id for each business
         var id = req.params.id;
+        console.log(id)
+        //Convert id into string
         const idString = id.toString();
-        console.log("test id",idString);
+        // pass idString into client review to get api from yelp for review detail of the business based on id
         client.reviews(idString).then(response => {
-            const firstResult = response.jsonBody;
+            // const firstResult = response.jsonBody.reviews[1].text;
+            const firstResult = response.jsonBody.reviews;
             const prettyJson = JSON.stringify(firstResult);
             var reviewDetail = JSON.parse(prettyJson);
             console.log(reviewDetail);
+            // res.json is response to the client when the client request data
             res.json(reviewDetail);
         }).catch(e => {
             console.log(e);
