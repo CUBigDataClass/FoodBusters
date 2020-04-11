@@ -9,9 +9,23 @@ export class YelpService {
 
   constructor(private http: HttpClient) { }
 
-  getSearchBusiness(city): Observable<any> {
+  //get all business in the city you pass
+  getSearchBusiness(city: any): Observable<any> {
     var test = this.http.get('http://localhost:3000/business/' + city);
     console.log(test);
     return test;
   }
+
+  //get all business delail of each business by passing id of that business
+  getBusinessDetail(id: any): Observable<any> {
+    return this.http.get('http://localhost:3000/business/' + id);
+  }
+
+  //get all review detail of the business by the id
+  getReviewDetail(id: any): Observable<any> {
+    return this.http.get('http://localhost:3000/reviews/' + id);
+  }
+
+
+
 }
