@@ -1,17 +1,22 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, OnChanges } from '@angular/core';
 import * as L from 'leaflet';
 
 import { YelpService } from '../yelp.service';
 import { Business } from '../businessModel';
+import { Router, Routes } from '@angular/router';
 
 import { restMarker } from '../marker';
+// import { updateRestaurants } from '../app.component';
 
 @Component({
   selector: 'app-leaf-map',
   templateUrl: './leaf-map.component.html',
   styleUrls: ['./leaf-map.component.scss']
 })
+
 export class LeafMapComponent implements OnInit {
+
+
 
   Icon = L.icon({
     iconUrl: '../assets/img/Minilogo.png',
@@ -22,16 +27,16 @@ export class LeafMapComponent implements OnInit {
   LocationMarker = L.Marker.extend({
 
     options: {
-        icon: this.Icon
+      icon: this.Icon
     },
- 
+
 
     setLocation: function(business: Business) {
-        this.business = business;
+      this.business = business;
     },
 
     getLocation: function(): Business{
-        return this.business;
+      return this.business;
     }
 
   });
@@ -45,7 +50,7 @@ export class LeafMapComponent implements OnInit {
 
 
   getSearchBusiness(city): void {
-  this.yelpService.getSearchBusiness(city)
+    this.yelpService.getSearchBusiness(city)
     .subscribe(data => {
       this.business = data;
       console.log(this.business);
@@ -56,22 +61,22 @@ export class LeafMapComponent implements OnInit {
   }
   
   private initMap(): void {
-      // Setting location to Boulder
-      this.markers = [];
-      var p1 = L.latLng(40.149152, -105.378020),
-      p2 = L.latLng(39.957245, -105.170137),
-      bounds = L.latLngBounds(p1, p2);
-      this.map = L.map('map', {
-        // maxBounds: bounds
-      }).setView([40.0150, -105.2705], 12.5);
-  
-   
-      var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-      }).addTo(this.map)
-  
+    // Setting location to Boulder
+    this.markers = [];
+    var p1 = L.latLng(40.149152, -105.378020),
+    p2 = L.latLng(39.957245, -105.170137),
+    bounds = L.latLngBounds(p1, p2);
+    this.map = L.map('map', {
+      // maxBounds: bounds
+    }).setView([40.0150, -105.2705], 12.5);
 
-  this.yelpService.getSearchBusiness('denver')
+
+    var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    }).addTo(this.map)
+
+
+    this.yelpService.getSearchBusiness('city')
     .subscribe(business => {
       business.forEach(function(a) {
 
@@ -81,20 +86,20 @@ export class LeafMapComponent implements OnInit {
 
         if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
 
-            am.setLocation(a);
-            
-            am.on('click', function() {
-              //this.restaurantInfoPannel
-            }, this);
+          am.setLocation(a);
 
-            this.markers.push(am);
-          }
+          am.on('click', function() {
+            //this.restaurantInfoPannel
+          }, this);
+
+          this.markers.push(am);
+        }
       }, this);
 
       L.featureGroup(this.markers).addTo(this.map);
     });
   }
-
+ 
   ngOnInit() {
     this.initMap();
     this.getSearchBusiness('boulder');

@@ -11,7 +11,7 @@ import { LeafMapComponent } from './leaf-map/leaf-map.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component'
 import { InfoPanelComponent } from './info-panel/info-panel.component';
 import { MatCardModule } from '@angular/material/card';
-
+import { EventEmmiterService } from './event-emmiter.service'
 
 @NgModule({
 
@@ -35,7 +35,7 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
   ],
 
-  providers: [  ],
+  providers: [ EventEmmiterService ],
 
   bootstrap: [AppComponent]
 })
