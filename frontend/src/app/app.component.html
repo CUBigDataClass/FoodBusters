@@ -17,6 +17,9 @@ crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
 integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
 crossorigin=""></script>
+<script src= 
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"> 
+    </script> 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Rokkitt" />
 
 
@@ -25,7 +28,7 @@ crossorigin=""></script>
   <div id="idmap" class="left-half">
     <app-leaf-map></app-leaf-map>
   </div>
-
+  
   <div class="right-half">
     <div class="infoPanel"> 
       <!-- <p> Are we still doing the filter? </p>
@@ -35,12 +38,12 @@ crossorigin=""></script>
       <a routerLink="Seattle">Seattle</a>   
       <a routerLink="NewYork">New York</a>    
       <router-outlet></router-outlet> -->
-      
-      <a id="boulder" href ng-click="value = this.yelpService.getSearchBusiness(boulder)">Boulder</a>
+     
+      <!-- <a id="boulder" href ng-click="value = this.yelpService.getSearchBusiness(boulder)">Boulder</a>
       <a id="denver" href ng-click="value = getSearchBusiness(denver)">Denver</a>
       <a id="losAngeles" href ng-click="value = getSearchBusiness(losAngeles)">Los Angeles</a>
       <a id="seattle" href ng-click="value = getSearchBusiness(seattle)">Seattle</a>
-      <a id="newYork" href ng-click="value = getSearchBusiness(newYork)">New York</a>
+      <a id="newYork" href ng-click="value = getSearchBusiness(newYork)">New York</a> -->
       <app-info-panel></app-info-panel>
     </div>
 

@@ -17,7 +17,7 @@ const searchRequest = {
 const searchCity = {
     boulder : 'boulder, co',
     denver : 'denver, co',
-    new_york : 'new york, ny',
+    new_york : 'new york city, ny',
     los_angeles : 'los angeles, ca' ,
     boston : 'boston, ma',
     };
@@ -125,7 +125,7 @@ router.get('/reviews/:id', async (req, res) => {
     try{
         // get id parameter from client, id is the unique id for each business
         var id = req.params.id;
-        console.log(id)
+     
         //Convert id into string
         const idString = id.toString();
         // pass idString into client review to get api from yelp for review detail of the business based on id
@@ -134,7 +134,7 @@ router.get('/reviews/:id', async (req, res) => {
             const firstResult = response.jsonBody.reviews;
             const prettyJson = JSON.stringify(firstResult);
             var reviewDetail = JSON.parse(prettyJson);
-            console.log(reviewDetail);
+           
             // res.json is response to the client when the client request data
             res.json(reviewDetail);
         }).catch(e => {
