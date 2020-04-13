@@ -10,9 +10,11 @@ export class CityClickService {
   
   constructor() {
     this.city = 'denver';
-    this.city_coordinates = [{'boulder': {'lat' :40.014984, 'long':-105.270546}},
+    this.city_coordinates = [{'boulder': {'lat' :40.016984, 'long':-105.270546}},
                               {'denver': {'lat' :39.742043 ,'long':-104.991531}},
-                              {'new_york': {'lat' :40.730610 ,'long':-73.935242}}
+                              {'new_york': {'lat' :40.730610 ,'long':-73.935242}},
+                              {'los_angeles': {'lat' :34.052235 ,'long':-118.243683}},
+                              {'seattle': {'lat' :47.638657 ,'long':-122.351509}}
                             ];
    }
 
@@ -29,7 +31,7 @@ export class CityClickService {
     if( city == 'boulder')
     {
         coor = this.city_coordinates[0];
-        console.log('coor in service', coor['new_york']);
+        console.log('coor in service', coor['boulder']);
     
     }
     if( city == 'denver')
@@ -44,19 +46,19 @@ export class CityClickService {
         console.log('coor in service', coor['new_york']);
     
     }
+    if( city == 'los_angeles')
+    {
+        coor = this.city_coordinates[3];
+        console.log('coor in service', coor['los_angeles']);
+    
+    }
+    if( city == 'seattle')
+    {
+        coor = this.city_coordinates[4];
+        console.log('coor in service', coor['seattle']);
+    
+    }
     return coor[city];
-    
-    // for (var i=0; i<len; i++) {
-    //   for(var j=0; j<3; i++)
-    //   {
-    //     var coor = this.city_coordinates[i][j];
-    //     console.log('coor in service', coor);
-    //   }
-      
-      // return coor;
-    // }
-    
-
   }
 
 
