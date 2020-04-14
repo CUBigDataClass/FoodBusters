@@ -88,19 +88,14 @@ export class LeafMapComponent implements OnInit {
     
   }
   // console.log("This city is clicked " + this.getCity());
-  initMap(): void {
+  private initMap(): void {
     // Setting location to Boulder
-   
-   
     this.markers = [];
-
     this.map = L.map('map').locate({setView: true, maxZoom:8});
 
-    
-    var latLon = L.latLng(39.742043,-104.991531);
-    var bounds = latLon.toBounds(10000); // 500 = metres
+    var latLon = L.latLng(40.016984,-105.270546);
+    var bounds = latLon.toBounds(10000); // 10000 = metres
     this.map.panTo(latLon).fitBounds(bounds);
-
 
     var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
@@ -108,7 +103,7 @@ export class LeafMapComponent implements OnInit {
 
    
     // this.city = city
-    this.yelpService.getSearchBusiness(this.city)
+    this.yelpService.getSearchBusiness('boulder')
     .subscribe(business => {
       business.forEach(function(a) {
 
@@ -144,13 +139,10 @@ export class LeafMapComponent implements OnInit {
     }
 
     this.map = L.map('map').locate({setView: true, maxZoom:8});
-
-    
-    // var latLon = L.latLng(39.742043,-104.991531);
     console.log(this.getCity + ' latitude ', this.coordinates['lat']);
     console.log(this.getCity + ' long ', this.coordinates['long']);
     var latLon = L.latLng(this.coordinates['lat'], this.coordinates['long']);
-    var bounds = latLon.toBounds(10000); // 500 = metres
+    var bounds = latLon.toBounds(10000); // 10000 = metres
     this.map.panTo(latLon).fitBounds(bounds);
 
 
@@ -159,12 +151,9 @@ export class LeafMapComponent implements OnInit {
     }).addTo(this.map)
 
    
-    // this.city = city
     this.yelpService.getSearchBusiness(this.getCity())
     .subscribe(business => {
       business.forEach(function(a) {
-
-        // console.log(a.coordinates['latitude']);
 
         var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
 
