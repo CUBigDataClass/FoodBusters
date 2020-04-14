@@ -27,9 +27,9 @@ export class LeafMapComponent implements OnInit {
   LocationMarker = L.Marker.extend({
 
     options: {
-      icon: this.Icon
+      icon: this.Icon, 
+      title: "hello"
     },
-
 
     setLocation: function(business: Business) {
       this.business = business;
@@ -37,6 +37,21 @@ export class LeafMapComponent implements OnInit {
 
     getLocation: function(): Business{
       return this.business;
+    },
+
+    bindPopup: function (content, options) {
+      this.LocationMarker.bindPopup(content, options);
+      return this;
+    },
+
+    setPopupContent: function (content) {
+      this.LocationMarker.setPopupContent(content);
+      return this;
+    },
+
+    unbindPopup: function () {
+      this.LocationMarker.unbindPopup();
+      return this;
     }
 
   });
@@ -55,8 +70,6 @@ export class LeafMapComponent implements OnInit {
      
    }
  
-
-
   getSearchBusiness(city): void {
     this.yelpService.getSearchBusiness(city)
     .subscribe(data => {
