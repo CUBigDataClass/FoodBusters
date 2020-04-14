@@ -36,7 +36,7 @@ export class LeafMapComponent implements OnInit {
 
     options: {
       icon: this.Icon,
-      title: "test"
+      title: "hello"
     },
 
 
@@ -66,8 +66,12 @@ export class LeafMapComponent implements OnInit {
   });
 
 
+<<<<<<< HEAD
+  constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
+=======
 
   constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService) {
+>>>>>>> f918341adcfe90ff91a99ead1f365e5bf95f602b
     this.city = 'denver';
     // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
 
