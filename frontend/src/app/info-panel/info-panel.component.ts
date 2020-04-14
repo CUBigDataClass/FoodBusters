@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {InfoPanelService} from '../info-panel.service';
+import { InfoPanelService } from '../info-panel.service';
 import {Business} from '../businessModel';
 import { YelpService } from '../yelp.service';
 
@@ -14,7 +14,8 @@ export class InfoPanelComponent implements OnInit {
 
 
 
-   add(business: Business) {
+   add(business: Business): void {
+    console.log(typeof business);
     this.infoPanelService.add(business);
   }
 

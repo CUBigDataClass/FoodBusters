@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Business } from '../businessModel';
+import { Business } from './businessModel';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InfoPanelService {
   show: boolean = false;
-  business: Business;
+  business: Business = null;
   showPanel(): void {
       this.show = true;
 }
