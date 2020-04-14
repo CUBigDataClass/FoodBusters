@@ -17,6 +17,12 @@ import { CityClickService } from '../city-click.service';
 export class LeafMapComponent implements OnInit {
 
 
+  //create object for business
+  business: Business[] = [];
+  private map: L.Map;
+  markers: L.Marker[];
+  city:String;
+  coordinates: object;
 
   Icon = L.icon({
     iconUrl: '../assets/img/Minilogo.png',
@@ -27,7 +33,8 @@ export class LeafMapComponent implements OnInit {
   LocationMarker = L.Marker.extend({
 
     options: {
-      icon: this.Icon
+      icon: this.Icon,
+      title: "test"
     },
 
 
@@ -37,25 +44,32 @@ export class LeafMapComponent implements OnInit {
 
     getLocation: function(): Business{
       return this.business;
+    },
+
+    bindPopup: function (content, options) {
+      this.LocationMarker.bindPopup(content, options);
+      return this;
+    },
+
+    setPopupContent: function (content) {
+      this.LocationMarker.setPopupContent(content);
+      return this;
+    },
+
+    unbindPopup: function () {
+      this.LocationMarker.unbindPopup();
+      return this;
     }
 
   });
 
-  //create object for business
-  business: Business[] = [];
-  private map: L.Map;
-  markers: L.Marker[];
-  city:String;
-  coordinates: object;
 
 
   constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
     this.city = 'denver';
     // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
 
-   }
-
-
+  }
 
   getSearchBusiness(city): void {
     this.yelpService.getSearchBusiness(city)
@@ -86,6 +100,7 @@ export class LeafMapComponent implements OnInit {
     return this.coordinates;
 
   }
+
   // console.log("This city is clicked " + this.getCity());
   private initMap(): void {
     // Setting location to Boulder
