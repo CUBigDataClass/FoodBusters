@@ -3,8 +3,8 @@
 </div>
 <div *ngIf=infoPanelService.business>
     <mat-card>
-<!--         <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
- -->      <mat-card-title>{{infoPanelService.business.name}}</mat-card-title>
+              <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
+      <mat-card-title>{{infoPanelService.business.name}}</mat-card-title>
        <mat-card-content>
             {{infoPanelService.business.rating}} ({{infoPanelService.business.review_count}})<br>
             {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
