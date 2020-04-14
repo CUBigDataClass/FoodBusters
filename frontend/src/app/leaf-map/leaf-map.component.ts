@@ -179,7 +179,8 @@ export class LeafMapComponent implements OnInit {
           am.setLocation(a);
 
           am.on('click', function() {
-            //this.restaurantInfoPannel
+            this.infoPanelService.add(am.getLocation());
+            this.infoPanelService.showPanel();
           }, this);
 
           this.markers.push(am);
