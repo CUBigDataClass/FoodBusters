@@ -7,7 +7,6 @@ import { Router, Routes } from '@angular/router';
 
 import { restMarker } from '../marker';
 import { CityClickService } from '../city-click.service';
-// import { updateRestaurants } from '../app.component';
 
 @Component({
   selector: 'app-leaf-map',
@@ -185,9 +184,6 @@ export class LeafMapComponent implements OnInit {
   }
  
   ngOnInit() {
-    // this.setCity('new_york');
-    // // this.getCity();
-    // this.getCoordinate('new_york');
     this.initMap();
     this.getSearchBusiness(this.city);
   }
