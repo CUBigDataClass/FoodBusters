@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {InfoPanelService} from '../info-panel.service';
+import {Business} from '../businessModel';
+import { YelpService } from '../yelp.service';
+
 
 @Component({
   selector: 'app-info-panel',
@@ -7,11 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoPanelComponent implements OnInit {
 
-  isResturantSelected: Boolean = false;
 
-  constructor() { }
 
-  ngOnInit(): void {
+
+   add(business: Business) {
+    this.infoPanelService.add(business);
+  }
+
+  constructor(public infoPanelService: InfoPanelService) { }
+
+
+
+
+ngOnInit(): void {
+
   }
 
 }
