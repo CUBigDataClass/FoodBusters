@@ -34,7 +34,7 @@ export class LeafMapComponent implements OnInit {
 
     options: {
       icon: this.Icon,
-      title: "test"
+      title: "hello"
     },
 
 
@@ -62,7 +62,6 @@ export class LeafMapComponent implements OnInit {
     }
 
   });
-
 
 
   constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
