@@ -66,12 +66,9 @@ export class LeafMapComponent implements OnInit {
   });
 
 
-<<<<<<< HEAD
-  constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
-=======
+  //constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
 
   constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService) {
->>>>>>> f918341adcfe90ff91a99ead1f365e5bf95f602b
     this.city = 'denver';
     // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
 
@@ -183,7 +180,8 @@ export class LeafMapComponent implements OnInit {
           am.setLocation(a);
 
           am.on('click', function() {
-            //this.restaurantInfoPannel
+            this.infoPanelService.add(am.getLocation());
+            this.infoPanelService.showPanel();
           }, this);
 
           this.markers.push(am);
