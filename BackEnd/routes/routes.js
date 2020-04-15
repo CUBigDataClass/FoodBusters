@@ -20,6 +20,7 @@ const searchCity = {
     new_york : 'new york city, ny',
     los_angeles : 'los angeles, ca' ,
     boston : 'boston, ma',
+    seattle : 'seattle, wa'
     };
 
 // create object to store data from api for boulder
