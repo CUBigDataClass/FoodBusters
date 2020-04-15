@@ -36,9 +36,7 @@ export class LeafMapComponent implements OnInit {
 
     options: {
       icon: this.Icon,
-      title: "hello"
     },
-
 
     setLocation: function(business: Business) {
       this.business = business;
@@ -48,25 +46,23 @@ export class LeafMapComponent implements OnInit {
       return this.business;
     },
 
-    bindPopup: function (content, options) {
-      this.LocationMarker.bindPopup(content, options);
-      return this;
-    },
+    // bindPopup: function ( content) {
+    //   this.LocationMarker.bindPopup( content);
+    //   return this;
+    // },
 
-    setPopupContent: function (content) {
-      this.LocationMarker.setPopupContent(content);
-      return this;
-    },
+    // setPopupContent: function (content) {
+    //   this.LocationMarker.setPopupContent(content);
+    //   return this;
+    // },
 
-    unbindPopup: function () {
-      this.LocationMarker.unbindPopup();
-      return this;
-    }
+    // unbindPopup: function () {
+    //   this.LocationMarker.unbindPopup();
+    //   return this;
+    // }
 
   });
 
-
-  //constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
 
   constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService) {
     this.city = 'denver';
@@ -104,6 +100,7 @@ export class LeafMapComponent implements OnInit {
 
   }
 
+
   // console.log("This city is clicked " + this.getCity());
   private initMap(): void {
     // Setting location to Boulder
@@ -111,7 +108,7 @@ export class LeafMapComponent implements OnInit {
     this.map = L.map('map').locate({setView: true, maxZoom:8});
 
     var latLon = L.latLng(40.016984,-105.270546);
-    var bounds = latLon.toBounds(10000); // 10000 = metres
+    var bounds = latLon.toBounds(1000); // 10000 = metres
     this.map.panTo(latLon).fitBounds(bounds);
 
     var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -126,7 +123,7 @@ export class LeafMapComponent implements OnInit {
 
         // console.log(a.coordinates['latitude']);
 
-        var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
+        var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {title: a.name});
 
         if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
 
@@ -145,9 +142,9 @@ export class LeafMapComponent implements OnInit {
     });
   }
 
+
   CityMap(city): void {
-    // Setting location to Boulder
-    // this.city = city;
+
     this.setCity(city);
     this.getCoordinate(this.getCity());
 
@@ -160,7 +157,7 @@ export class LeafMapComponent implements OnInit {
     console.log(this.getCity + ' latitude ', this.coordinates['lat']);
     console.log(this.getCity + ' long ', this.coordinates['long']);
     var latLon = L.latLng(this.coordinates['lat'], this.coordinates['long']);
-    var bounds = latLon.toBounds(10000); // 10000 = metres
+    var bounds = latLon.toBounds(5000); // 10000 = metres
     this.map.panTo(latLon).fitBounds(bounds);
 
 
@@ -173,7 +170,7 @@ export class LeafMapComponent implements OnInit {
     .subscribe(business => {
       business.forEach(function(a) {
 
-        var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {});
+        var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {title: a.name});
 
         if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
 
@@ -183,6 +180,10 @@ export class LeafMapComponent implements OnInit {
             this.infoPanelService.add(am.getLocation());
             this.infoPanelService.showPanel();
           }, this);
+ 
+          // am.bindPopup("hello");
+          // am.setPopupContent("hello");
+          // am.unbindPopup();
 
           this.markers.push(am);
         }
