@@ -9,7 +9,7 @@ export class CityClickService {
   city_coordinates = [];
   
   constructor() {
-    this.city = 'denver';
+    // this.city = 'boulder';
     this.city_coordinates = [{'boulder': {'lat' :40.016984, 'long':-105.270546}},
                               {'denver': {'lat' :39.742043 ,'long':-104.991531}},
                               {'new_york': {'lat' :40.730610 ,'long':-73.935242}},

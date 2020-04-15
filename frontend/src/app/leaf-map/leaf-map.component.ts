@@ -7,6 +7,7 @@ import { Router, Routes } from '@angular/router';
 
 import { restMarker } from '../marker';
 import { CityClickService } from '../city-click.service';
+
 // import { updateRestaurants } from '../app.component';
 
 @Component({
@@ -50,11 +51,8 @@ export class LeafMapComponent implements OnInit {
   coordinates: object;
   
 
-  constructor(public yelpService : YelpService, public CityClickService : CityClickService) {
-    this.city = 'denver';
-    // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
-     
-   }
+  constructor(public yelpService : YelpService, public CityClickService : CityClickService) 
+  { }
  
 
 
@@ -101,6 +99,8 @@ export class LeafMapComponent implements OnInit {
       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(this.map)
 
+    this.CityClickService.setCity('boulder')
+
    
     // this.city = city
     this.yelpService.getSearchBusiness('boulder')
@@ -130,7 +130,7 @@ export class LeafMapComponent implements OnInit {
   CityMap(city): void {
     // Setting location to Boulder
     // this.city = city;
-    this.setCity(city);
+    this.CityClickService.setCity(city)
     this.getCoordinate(this.getCity());
    
     this.markers = [];
@@ -150,7 +150,8 @@ export class LeafMapComponent implements OnInit {
       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(this.map)
 
-   
+ 
+    
     this.yelpService.getSearchBusiness(this.getCity())
     .subscribe(business => {
       business.forEach(function(a) {

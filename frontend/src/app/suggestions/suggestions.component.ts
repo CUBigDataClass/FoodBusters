@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { YelpService } from '../yelp.service';
 import { Business } from '../businessModel';
 
+
 @Component({
   selector: 'app-suggestions',
   templateUrl: './suggestions.component.html',
@@ -29,8 +30,8 @@ export class SuggestionsComponent implements OnInit {
       });
   }
 
-  private getSuggestions(city): void {
-    this.getSearchBusiness(city);
+  getSuggestions(city){
+    return this.getSearchBusiness(city);
   }
 
   private sortBusinessesByRating(): void {
