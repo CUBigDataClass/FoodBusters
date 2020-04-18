@@ -10,15 +10,15 @@ export class InfoPanelService {
   business: Business = null;
   showPanel(): void {
       this.show = true;
-}
+  }
 
   hidePanel(): void {
     this.show = false;
-}
+  }
   add(business: Business): void{
     this.business = business;
     console.log(this.business);
-}
+  }
 
 
 

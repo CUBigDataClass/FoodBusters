@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, OnChanges, HostBinding } from '@angular/core';
 import * as L from 'leaflet';
 
 import { YelpService } from '../yelp.service';
@@ -25,6 +25,7 @@ export class LeafMapComponent implements OnInit {
   markers: L.Marker[];
   city:String;
   coordinates: object;
+
 
   Icon = L.icon({
     iconUrl: '../assets/img/Minilogo.png',
@@ -102,9 +103,10 @@ export class LeafMapComponent implements OnInit {
 
 
   // console.log("This city is clicked " + this.getCity());
-  private initMap(): void {
+  initMap(): void {
     // Setting location to Boulder
     this.markers = [];
+    // if this.map
     this.map = L.map('map').locate({setView: true, maxZoom:8});
 
     var latLon = L.latLng(40.016984,-105.270546);
