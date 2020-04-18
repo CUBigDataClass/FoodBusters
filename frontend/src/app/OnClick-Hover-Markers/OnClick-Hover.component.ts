@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { YelpService } from '../yelp.service';
+import { Business } from '../businessModel';
+
 @Component({
   selector: 'app-OnClick-Hover-Markers',
   templateUrl: './OnCLick-Hover.component.html',

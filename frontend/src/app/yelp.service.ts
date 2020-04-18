@@ -11,9 +11,8 @@ export class YelpService {
 
   //get all business in the city you pass
   getSearchBusiness(city: any): Observable<any> {
-    var test = this.http.get('http://localhost:3000/business/' + city);
-    console.log(test);
-    return test;
+    return this.http.get('http://localhost:3000/business/' + city);
+  
   }
 
   //get all business delail of each business by passing id of that business
@@ -25,6 +24,12 @@ export class YelpService {
   getReviewDetail(id: any): Observable<any> {
     return this.http.get('http://localhost:3000/reviews/' + id);
   }
+
+  //get all review detail of the business by the id
+  getNightlife(city: any): Observable<any> {
+    return this.http.get('http://localhost:3000/reviews/' + city);
+  }
+  
 
 
 

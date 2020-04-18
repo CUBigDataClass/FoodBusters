@@ -2,6 +2,7 @@ export class Business {
     id: String;
     alias: String;
     name: String;
+    image_url: String;
     is_closed: Boolean;
     url: String;
     review_count: Number;

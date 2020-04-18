@@ -20,6 +20,7 @@ const searchCity = {
     new_york : 'new york city, ny',
     los_angeles : 'los angeles, ca' ,
     boston : 'boston, ma',
+    seattle : 'seattle, wa'
     };
 
 // create object to store data from api for boulder
@@ -96,6 +97,32 @@ router.get('/business/:city', async (req, res) => {
 
 });
 
+// get data of each city for nightlife
+router.get('/nightlife/:city', async (req, res) => {
+    try{
+        var city = req.params.city;
+        const cityString = city.toString();
+        const searchRequest = {
+            categories: 'Nightlife',
+            limit: 20,
+            location: searchCity[cityString]
+            };
+        //get yelp api for each city
+        client.eventSearch(searchRequest).then(response => {
+            const firstResult = response.jsonBody.events;
+            const prettyJson = JSON.stringify(firstResult);
+            var nightlifeDetail = JSON.parse(prettyJson);
+            console.log(nightlifeDetail)
+            res.json(nightlifeDetail);
+        }).catch(e => {
+            console.log(e);
+        });
+    } catch (err) {
+        res.status(500).json({ message: err.message})
+    }
+
+});
+
 
 
 
@@ -105,7 +132,7 @@ router.get('/business/:city/:id', async (req, res) => {
     try{
         var id = req.params.id;
         const idString = id.toString();
-        console.log("test id",idString);
+        // console.log("test id",idString);
         client.business(idString).then(response => {
             const firstResult = response.jsonBody;
             const prettyJson = JSON.stringify(firstResult);

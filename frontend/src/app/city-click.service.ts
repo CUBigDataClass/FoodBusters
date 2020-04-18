@@ -12,9 +12,9 @@ export class CityClickService {
     // this.city = 'boulder';
     this.city_coordinates = [{'boulder': {'lat' :40.016984, 'long':-105.270546}},
                               {'denver': {'lat' :39.742043 ,'long':-104.991531}},
-                              {'new_york': {'lat' :40.730610 ,'long':-73.935242}},
+                              {'new_york': {'lat' :40.7128 ,'long':-74.0060}},
                               {'los_angeles': {'lat' :34.052235 ,'long':-118.243683}},
-                              {'seattle': {'lat' :47.638657 ,'long':-122.351509}}
+                              {'seattle': {'lat' :47.6062 ,'long':-122.3321}}
                             ];
    }
 
