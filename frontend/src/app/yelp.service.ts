@@ -27,7 +27,7 @@ export class YelpService {
 
   //get all review detail of the business by the id
   getNightlife(city: any): Observable<any> {
-    return this.http.get('http://localhost:3000/reviews/' + city);
+    return this.http.get('http://localhost:3000/nightlife/' + city);
   }
   
 
