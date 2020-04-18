@@ -3,12 +3,15 @@ import * as L from 'leaflet';
 
 import { YelpService } from '../yelp.service';
 import { Business } from '../businessModel';
+import { Nightlife } from '../nightlifeModel';
 import { Router, Routes } from '@angular/router';
 
 import { restMarker } from '../marker';
 import { CityClickService } from '../city-click.service';
 
+
 import { InfoPanelService } from '../info-panel.service';
+
 
 @Component({
   selector: 'app-leaf-map',
@@ -21,6 +24,7 @@ export class LeafMapComponent implements OnInit {
 
   //create object for business
   business: Business[] = [];
+  nightlife: Nightlife[] = [];
   private map: L.Map;
   markers: L.Marker[];
   city:String;
@@ -65,10 +69,11 @@ export class LeafMapComponent implements OnInit {
   });
 
 
+ 
+
   constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService) {
     this.city = 'denver';
     // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
-
   }
 
   getSearchBusiness(city): void {
@@ -118,6 +123,9 @@ export class LeafMapComponent implements OnInit {
     }).addTo(this.map)
 
 
+    this.CityClickService.setCity('boulder')
+
+   
     // this.city = city
     this.yelpService.getSearchBusiness('boulder')
     .subscribe(business => {
@@ -147,7 +155,11 @@ export class LeafMapComponent implements OnInit {
 
   CityMap(city): void {
 
+    // Setting location to Boulder
+    // this.city = city;
+    this.CityClickService.setCity(city)
     this.setCity(city);
+
     this.getCoordinate(this.getCity());
 
     this.markers = [];
@@ -166,7 +178,6 @@ export class LeafMapComponent implements OnInit {
     var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(this.map)
-
 
     this.yelpService.getSearchBusiness(this.getCity())
     .subscribe(business => {
