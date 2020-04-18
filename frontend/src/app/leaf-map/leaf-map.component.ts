@@ -6,7 +6,7 @@ import { Business } from '../businessModel';
 import { Nightlife } from '../nightlifeModel';
 import { Router, Routes } from '@angular/router';
 
-import { restMarker } from '../marker';
+// import { restMarker } from '../marker';
 import { CityClickService } from '../city-click.service';
 
 
@@ -30,17 +30,26 @@ export class LeafMapComponent implements OnInit {
   city:String;
   coordinates: object;
 
-
+  //Icon for Restaurants
   Icon = L.icon({
     iconUrl: '../assets/img/Minilogo.png',
 
     iconSize: [35,35]
   });
 
+  //Icon for Night Life
+  Icon2 = L.icon({
+    iconUrl: '../assets/img/nightMarker.png',
+
+    iconSize: [35,35]
+  })
+
+  //Setting up markers for Restaurants
   LocationMarker = L.Marker.extend({
 
     options: {
       icon: this.Icon,
+      icon2: this.Icon2
     },
 
     setLocation: function(business: Business) {
@@ -68,11 +77,11 @@ export class LeafMapComponent implements OnInit {
 
   });
 
-
  
 
-  constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService) {
-    this.city = 'denver';
+  constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, 
+    public CityClickService : CityClickService) {
+    this.city = 'boulder';
     // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
   }
 
