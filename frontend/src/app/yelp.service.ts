@@ -15,7 +15,7 @@ export class YelpService {
   
   }
 
-  //get all business delail of each business by passing id of that business
+  //get all business detail of each business by passing id of that business
   getBusinessDetail(id: any): Observable<any> {
     return this.http.get('http://localhost:3000/business/' + id);
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Business } from './businessModel';
+import { Nightlife } from './nightlifeModel'
 
 
 @Injectable({
@@ -8,6 +9,7 @@ import { Business } from './businessModel';
 export class InfoPanelService {
   show: boolean = false;
   business: Business = null;
+  nighLife: Nightlife = null;
   showPanel(): void {
       this.show = true;
   }
@@ -20,7 +22,10 @@ export class InfoPanelService {
     console.log(this.business);
   }
 
-
+  add2(nighLife:Nightlife): void{
+    this.nighLife = nighLife;
+    console.log(this.nighLife);
+  }
 
   constructor() { }
 }
