@@ -49,7 +49,6 @@ export class LeafMapComponent implements OnInit {
 
     options: {
       icon: this.Icon,
-      icon2: this.Icon2
     },
 
     setLocation: function(business: Business) {
@@ -77,9 +76,26 @@ export class LeafMapComponent implements OnInit {
 
   });
 
- 
+  //Setting up markers for Nightlife
+  LocationMarker2 = L.Marker.extend({
 
-  constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, 
+    options: {
+      icon: this.Icon2
+    },
+
+    setLocation: function(nightlife: Nightlife) {
+      this.nightlife = nightlife;
+    },
+
+    getLocation: function(): Nightlife{
+      return this.nightlife;
+    },
+
+  });
+
+
+
+  constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService,
     public CityClickService : CityClickService) {
     this.city = 'boulder';
     // this.coordinates = {'lat' :40.014984, 'long':-105.270546};
@@ -90,6 +106,18 @@ export class LeafMapComponent implements OnInit {
     .subscribe(data => {
       this.business = data;
       console.log(this.business);
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  //function to get the night life
+  getNightlife(city): void {
+    this.yelpService.getNightlife(city)
+    .subscribe(data => {
+      this.nightlife = data;
+      console.log(this.nightlife);
     },
     error => {
       console.log(error);
@@ -134,7 +162,7 @@ export class LeafMapComponent implements OnInit {
 
     this.CityClickService.setCity('boulder')
 
-   
+
     // this.city = city
     this.yelpService.getSearchBusiness('boulder')
     .subscribe(business => {
@@ -154,6 +182,28 @@ export class LeafMapComponent implements OnInit {
           }, this);
 
           this.markers.push(am);
+        }
+      }, this);
+
+      L.featureGroup(this.markers).addTo(this.map);
+    });
+
+    //this is for the night life functionality
+    this.yelpService.getNightlife('boulder')
+    .subscribe(nightlife => {
+      nightlife.forEach(function(x) {
+
+        var ab = new this.LocationMarker2([x.latitude, x.longitude], {title: x.name});
+        if(x.latitude != null && x.longitude != null){
+
+          ab.setLocation(x);
+
+          ab.on('click', function() {
+             this.infoPanelService.add(ab.getLocation());
+            this.infoPanelService.showPanel();
+          }, this);
+
+          this.markers.push(ab);
         }
       }, this);
 
@@ -202,10 +252,33 @@ export class LeafMapComponent implements OnInit {
             this.infoPanelService.add(am.getLocation());
             this.infoPanelService.showPanel();
           }, this);
- 
+
           // am.bindPopup("hello");
           // am.setPopupContent("hello");
           // am.unbindPopup();
+
+          this.markers.push(am);
+        }
+      }, this);
+
+      L.featureGroup(this.markers).addTo(this.map);
+    });
+
+    this.yelpService.getNightlife(this.getCity())
+    .subscribe(nightlife => {
+      nightlife.forEach(function(x) {
+
+        var am = new this.LocationMarker2([x.latitude, x.longitude], {title: x.name});
+        if(x.latitude != null && x.longitude != null){
+
+          am.setLocation(x);
+
+          am.on('click', function() {
+            this.infoPanelService.add(am.getLocation());
+            this.infoPanelService.showPanel();
+          }, this);
+
+
 
           this.markers.push(am);
         }
@@ -218,5 +291,6 @@ export class LeafMapComponent implements OnInit {
   ngOnInit() {
     this.initMap();
     this.getSearchBusiness(this.city);
+    this.getNightlife(this.city);
   }
 }
