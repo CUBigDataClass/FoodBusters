@@ -13,7 +13,7 @@ import { CityClickService } from '../service/city-click.service';
 export class SuggestionsComponent implements OnInit {
 
   //create object for business
-  business: any;
+  business: Business[];
   top3Businesses: Business[] = [];
   city:String
   constructor(public yelpService : YelpService, public cityClickService : CityClickService) {
@@ -23,9 +23,9 @@ export class SuggestionsComponent implements OnInit {
   
 
   getSearchBusiness(city){
-    
-    this.business = this.cityClickService.getBusinessService();
+   
     console.log('get business for suggestion ', this.business);
+
     this.sortBusinessesByRating();
     // this.top3Businesses = this.business.slice(0,3);
     // console.log('Top3Businesses: ',this.top3Businesses);

@@ -1,0 +1,25 @@
+.mat-toolbar.mat-primary {
+  background: #115A9C;
+  color: #fff;
+}
+.navbar{
+	justify-content: space-between;
+}
+
+a{
+  font-size: medium;
+  padding-right: 2rem;
+  padding-bottom: 30px;
+  cursor:pointer;
+}
+a:hover{
+  color: #B7FDFF;
+  text-decoration: underline;
+}
+
+a.logo{
+  padding-bottom: 0px;
+  padding-top: 5px;
+}
+
+

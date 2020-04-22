@@ -12,6 +12,7 @@ import { SuggestionsComponent } from './suggestions/suggestions.component'
 import { InfoPanelComponent } from './info-panel/info-panel.component';
 import { MatCardModule } from '@angular/material/card';
 import { EventEmmiterService } from './event-emmiter.service';
+import { RefreshComponent } from './refresh/refresh.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { EventEmmiterService } from './event-emmiter.service';
     LeafMapComponent,
     SuggestionsComponent,
     InfoPanelComponent,
+    RefreshComponent,
    
   ],
 
