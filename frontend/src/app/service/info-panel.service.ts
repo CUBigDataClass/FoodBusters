@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Business } from './businessModel';
+import { Business } from '../businessModel';
 
 
 @Injectable({

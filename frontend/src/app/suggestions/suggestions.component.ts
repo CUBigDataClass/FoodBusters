@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { YelpService } from '../yelp.service';
+import { YelpService } from '../service/yelp.service';
 import { Business } from '../businessModel';
+import { CityClickService } from '../service/city-click.service';
 
 
 @Component({
@@ -12,30 +13,33 @@ import { Business } from '../businessModel';
 export class SuggestionsComponent implements OnInit {
 
   //create object for business
-  business: Business[] = [];
+  business: any;
   top3Businesses: Business[] = [];
+  city:String
+  constructor(public yelpService : YelpService, public cityClickService : CityClickService) {
+    this.city = 'boulder'
+   }
 
-  constructor(public yelpService : YelpService) { }
+  
 
-  getSearchBusiness(city): void {
-    this.yelpService.getSearchBusiness(city)
-      .subscribe(data => {
-        this.business = data;
-        this.sortBusinessesByRating();
-        this.top3Businesses = this.business.slice(0,3);
-        console.log(this.top3Businesses);
-      },
-      error => {
-        console.log(error);
-      });
+  getSearchBusiness(city){
+    
+    this.business = this.cityClickService.getBusinessService();
+    console.log('get business for suggestion ', this.business);
+    this.sortBusinessesByRating();
+    // this.top3Businesses = this.business.slice(0,3);
+    // console.log('Top3Businesses: ',this.top3Businesses);
   }
 
-  getSuggestions(city){
-    return this.getSearchBusiness(city);
+
+  getSuggestions(): void{
+    this.city = this.cityClickService.getCity();
+    console.log('city in suggestion ', this.cityClickService.getCity())
+    this.getSearchBusiness(this.city);
   }
 
   private sortBusinessesByRating(): void {
-      this.business.sort((n1,n2) => {
+    this.business.sort((n1,n2) => {
           if (n1.rating < n2.rating) {
               return 1;
           }
@@ -45,13 +49,12 @@ export class SuggestionsComponent implements OnInit {
           }
           else return 0;
       });
-      // console.log(this.business);
-      
-      
   }
 
   ngOnInit(): void {
-    this.getSuggestions('boulder');
+    
+    this.getSuggestions();
+    
   }
 
 }

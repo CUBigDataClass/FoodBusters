@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoPanelService } from '../info-panel.service';
+import { InfoPanelService } from '../service/info-panel.service';
 import {Business} from '../businessModel';
-import { YelpService } from '../yelp.service';
+import { YelpService } from '../service/yelp.service';
 
 
 @Component({

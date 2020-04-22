@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InfoPanelService } from './info-panel.service';
+import { InfoPanelService } from './service/info-panel.service';
 
 
 @Component({

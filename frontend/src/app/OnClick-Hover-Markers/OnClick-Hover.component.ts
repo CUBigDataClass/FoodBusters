@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { YelpService } from '../yelp.service';
+import { YelpService } from '../service/yelp.service';
 import { Business } from '../businessModel';
 
 @Component({

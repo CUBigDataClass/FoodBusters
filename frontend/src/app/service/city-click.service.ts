@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Business } from '../businessModel';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class CityClickService {
 
   city: String;
   city_coordinates = [];
-  
+  business: Business[] = [];
   constructor() {
     // this.city = 'boulder';
     this.city_coordinates = [{'boulder': {'lat' :40.016984, 'long':-105.270546}},
@@ -18,7 +19,7 @@ export class CityClickService {
                             ];
    }
 
-  setCity(city) {
+  setCity(city):void{
      this.city = city;
   }
 
@@ -59,6 +60,17 @@ export class CityClickService {
     
     }
     return coor[city];
+  }
+
+  add(business:any): void{
+    this.business = business;
+    console.log( "city click add busisness ", this.business);
+  } 
+
+  getBusinessService(){
+    console.log( " get business city click ", this.business);
+    return this.business;
+    
   }
 
 

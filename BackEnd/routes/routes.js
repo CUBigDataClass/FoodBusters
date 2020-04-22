@@ -68,7 +68,7 @@ const searchCity = {
 //     console.log(e);
 //   });
 
-
+  
 
 // get data of each city
 router.get('/business/:city', async (req, res) => {
@@ -86,8 +86,8 @@ router.get('/business/:city', async (req, res) => {
             var businessDetail = JSON.parse(prettyJson);
             // console.log(businessDetail);
             var business = Business.find();
-            // console.log(business)
-            res.json(businessDetail);
+            console.log(firstResult)
+            res.json(firstResult);
         }).catch(e => {
             console.log(e);
         });
