@@ -20,6 +20,16 @@ import { Router, Routes } from '@angular/router';
 export class LeafMapComponent implements OnInit {
 
 
+ //if(nightlife click)
+ //else() : display restaurants
+
+
+
+
+
+
+
+
   //create object for business
   business: Business[];
   nightlife: Nightlife[] = [];
@@ -86,7 +96,7 @@ export class LeafMapComponent implements OnInit {
   {
     this.business = [];
     this.city = 'boulder';
-    
+
   }
 
 
@@ -148,7 +158,7 @@ export class LeafMapComponent implements OnInit {
     console.log('update business: ', this.business);
     this.CityClickService.setCity(this.city);
     this.markers = [];
-   
+
     this.business.forEach(function(a) {
       // console.log(a);
       var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {title: a.name});
@@ -160,23 +170,23 @@ export class LeafMapComponent implements OnInit {
         am.on('click', function() {
           this.infoPanelService.add(am.getLocation());
           this.infoPanelService.showPanel();
-          
+
         }, this);
 
         this.markers.push(am);
       }
     }, this);
-    
+
     if(this.markers.length !=0) {
       L.featureGroup(this.markers).addTo(this.map);
       this.CityClickService.add(this.business);
     } else {
       console.log('no markers');
     }
-    
+
   }
- 
- 
+
+
 
 
   // console.log("This city is clicked " + this.getCity());
@@ -186,7 +196,7 @@ export class LeafMapComponent implements OnInit {
     // if this.map
 
     this.map = L.map('map').locate({setView: true, maxZoom:8});
-  
+
     var latLon = L.latLng(40.016984,-105.270546);
     var bounds = latLon.toBounds(5000); // 10000 = metres
     this.map.panTo(latLon).fitBounds(bounds);
@@ -246,7 +256,7 @@ export class LeafMapComponent implements OnInit {
       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(this.map)
 
-   
+
 
 
 
