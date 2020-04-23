@@ -8,7 +8,7 @@
 
     <mat-card-content>
      
-      {{infoPanelService.business.rating}} ({{infoPanelService.business.review_count}})<br>
+      {{infoPanelService.business.rating}} &#9733; ({{infoPanelService.business.review_count}})<br>
 
       {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
       <span *ngIf="!infoPanelService.business.is_closed" style="color:green">Open</span>
