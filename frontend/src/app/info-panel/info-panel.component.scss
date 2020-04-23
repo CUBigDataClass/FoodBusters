@@ -1,7 +1,22 @@
-.infoPanel{
-	padding-top: 60px;
-	border-style: dotted;
-	background-color: white;
+// .infoPanel{
+// 	padding-top: 60px;
+// 	border-style: dotted;
+// 	background-color: white;
+// }
+.infoPanel {
+    font-family: Rokkitt;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 25px;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    font-size: larger;
 }
 
 .resturantImg {

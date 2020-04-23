@@ -35,11 +35,9 @@ export class SuggestionsComponent implements OnInit {
    
     this.business = this.cityClickService.getBusinessService();
     this.top3Businesses = this.business.slice(0,3);
-
     // this.sortBusinessesByRating();
     // this.top3Businesses = this.business.slice(0,3);
     // console.log('Top3Businesses: ',this.top3Businesses);
-
     this.sortBusinessesByRating();
 
   }

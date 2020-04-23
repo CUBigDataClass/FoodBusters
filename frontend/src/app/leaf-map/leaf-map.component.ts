@@ -32,7 +32,7 @@ export class LeafMapComponent implements OnInit {
 
   //create object for business
   business: Business[];
-  nightlife: Nightlife[] = [];
+  nightlife: Nightlife[];
   private map: L.Map;
   markers: L.Marker[];
   city:String;
@@ -91,10 +91,18 @@ export class LeafMapComponent implements OnInit {
     error: err => console.log('Observer got an error: ' + err),
     complete: () => console.log('Observer.got a complete notification'),
   };
+  
+
+  // nightlifeObserver = {
+  //   next: x => this.UpdatNightlife(x),
+  //   error: err => console.log('Observer got an error: ' + err),
+  //   complete: () => console.log('Observer.got a complete notification'),
+  // };
 
   constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService)
   {
     this.business = [];
+    this.nightlife = [];
     this.city = 'boulder';
 
   }
@@ -185,6 +193,8 @@ export class LeafMapComponent implements OnInit {
     }
 
   }
+
+
 
 
 
