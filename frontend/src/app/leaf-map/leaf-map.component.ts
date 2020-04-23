@@ -195,7 +195,7 @@ export class LeafMapComponent implements OnInit {
 
     this.nightlife.forEach(function(a) {
       // console.log(a);
-      var am = new this.LocationMarker([a.latitude, a.longitude], {title: a.name});
+      var am = new this.LocationMarker2([a.latitude, a.longitude], {title: a.name});
 
       if(a.latitude != null && a.longitude != null){
 
