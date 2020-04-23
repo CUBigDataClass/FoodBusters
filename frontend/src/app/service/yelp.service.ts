@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of , BehaviorSubject} from 'rxjs';
 import { Business } from '../businessModel';
+import { Nightlife } from '../nightlifeModel';
 
 export interface BusinessResponse {
   body: [];
@@ -16,9 +17,12 @@ export class YelpService {
   BASE_URL = 'http://localhost:3000/';
 
   // private business: BusinessResponse;
-  // businessSource = new BehaviorSubject<BusinessResponse>({ body : []}); 
+  // businessSource = new BehaviorSubject<BusinessResponse>({ body : []});
   business: Business[];
-  businessSource = new BehaviorSubject<Business[]>([]);   
+  businessSource = new BehaviorSubject<Business[]>([]);
+
+  nightLife: Nightlife[];
+  nightlifeSource = new BehaviorSubject<Nightlife[]>([]);
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +32,15 @@ export class YelpService {
       this.business = data;
       console.log('get business service ', this.business);
       this.businessSource.next(this.business);
+    })
+  }
+
+  getNightlife(city:any) {
+    this.http.get<Nightlife[]>(this.BASE_URL + 'nightlife/' + city)
+    .subscribe(data => {
+      this.nightLife = data;
+      console.log('get nightlife service ', this.nightLife);
+      this.nightlifeSource.next(this.nightLife);
     })
   }
 }
