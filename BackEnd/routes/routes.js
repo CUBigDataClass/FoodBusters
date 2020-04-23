@@ -129,7 +129,7 @@ router.get('/nightlife/:city', async (req, res) => {
 
 
 //GET business Detail
-router.get('/business/:city/:id', async (req, res) => {
+router.get('/business/city/:id', async (req, res) => {
     try{
         var id = req.params.id;
         const idString = id.toString();
