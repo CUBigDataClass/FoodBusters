@@ -4,7 +4,6 @@ import { Observable, of , BehaviorSubject} from 'rxjs';
 import { Business } from '../businessModel';
 import { Nightlife } from '../nightlifeModel';
 
-
 export interface BusinessResponse {
   body: [];
 }
@@ -18,12 +17,15 @@ export class YelpService {
   BASE_URL = 'http://localhost:3000/';
 
   // private business: BusinessResponse;
-  // businessSource = new BehaviorSubject<BusinessResponse>({ body : []}); 
+  // businessSource = new BehaviorSubject<BusinessResponse>({ body : []});
   business: Business[];
+
   businessSource = new BehaviorSubject<Business[]>([]); 
   
+
   nightLife: Nightlife[];
-  nightlifeSource = new BehaviorSubject<Nightlife[]>([]); 
+  nightlifeSource = new BehaviorSubject<Nightlife[]>([]);
+
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +38,8 @@ export class YelpService {
     })
   }
 
-  getNightLife(city:any) {
+
+  getNightlife(city:any) {
     this.http.get<Nightlife[]>(this.BASE_URL + 'nightlife/' + city)
     .subscribe(data => {
       this.nightLife = data;
