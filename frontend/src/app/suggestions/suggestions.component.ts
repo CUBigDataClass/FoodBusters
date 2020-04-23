@@ -19,23 +19,31 @@ export class SuggestionsComponent implements OnInit {
   constructor(public yelpService : YelpService, public cityClickService : CityClickService) {
     this.city = 'boulder'
    }
+   businessObserver = {
+    next: x => this.Updatebusiness(x),
+    error: err => console.log('Observer got an error: ' + err),
+    complete: () => console.log('Observer.got a complete notification'),
+  };
 
-  
-
-  getSearchBusiness(city){
-   
-    console.log('get business for suggestion ', this.business);
-
-    this.sortBusinessesByRating();
-    // this.top3Businesses = this.business.slice(0,3);
-    // console.log('Top3Businesses: ',this.top3Businesses);
+  Updatebusiness(x) {
+    this.business = x;
+    this.getSuggestions(this.city);
   }
 
 
-  getSuggestions(): void{
+  getSearchBusiness(city){
+   
+    this.business = this.cityClickService.getBusinessService();
+    this.top3Businesses = this.business.slice(0,3);
+
+    this.sortBusinessesByRating();
+  }
+
+
+  getSuggestions(city): void{
     this.city = this.cityClickService.getCity();
-    console.log('city in suggestion ', this.cityClickService.getCity())
     this.getSearchBusiness(this.city);
+    return this.getSearchBusiness(this.city);
   }
 
   private sortBusinessesByRating(): void {
@@ -52,9 +60,9 @@ export class SuggestionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.getSuggestions();
-    
+    this.yelpService.getBusiness(this.city);
+    this.yelpService.businessSource.subscribe(this.businessObserver)
+    this.getSuggestions(this.city);
   }
 
 }
