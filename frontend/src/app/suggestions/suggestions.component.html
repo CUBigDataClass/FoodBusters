@@ -3,7 +3,7 @@
 <div *ngFor="let b of top3Businesses">
     <mat-card>
         <img mat-card-image class="resturantImg" [src]="b.image_url" alt="b.name" />
-        <mat-card-title>{{b.name}}</mat-card-title>
+        <mat-card-title><a [href]="b.url" target="_blank">{{b.name}}</a></mat-card-title>
         <mat-card-content>
             {{b.rating}} &#9733; ({{b.review_count}})<br>
             {{b.price}} - {{b.categories[0].title}} - {{b.location.address1}}<br>

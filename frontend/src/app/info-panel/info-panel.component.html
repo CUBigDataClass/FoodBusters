@@ -3,7 +3,7 @@
 </div>
 <div *ngIf=infoPanelService.business>
   <mat-card>
-    <mat-card-title>{{infoPanelService.business.name}}</mat-card-title>
+    <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
     <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
 
     <mat-card-content>
