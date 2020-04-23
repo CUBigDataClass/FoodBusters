@@ -77,7 +77,8 @@ router.get('/business/:city', async (req, res) => {
         const cityString = city.toString();
         const searchRequest = {
             term:'restaurants',
-            location: searchCity[cityString]
+            location: searchCity[cityString],
+            limit: 20
             };
         //get yelp api for each city
         client.search(searchRequest).then(response => {

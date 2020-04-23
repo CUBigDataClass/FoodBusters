@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { YelpService } from '../service/yelp.service';
 
 @Component({
   selector: 'app-refresh',
@@ -9,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class RefreshComponent implements OnInit {
 
-  constructor(private _location: Location, private _router: Router) { 
+  constructor(private _location: Location, private _router: Router, public yelpService : YelpService) { 
   	console.log('constructor ran');
   }
 

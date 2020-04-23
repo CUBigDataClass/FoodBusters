@@ -26,7 +26,7 @@ export class SuggestionsComponent implements OnInit {
    
     console.log('get business for suggestion ', this.business);
 
-    this.sortBusinessesByRating();
+    // this.sortBusinessesByRating();
     // this.top3Businesses = this.business.slice(0,3);
     // console.log('Top3Businesses: ',this.top3Businesses);
   }
