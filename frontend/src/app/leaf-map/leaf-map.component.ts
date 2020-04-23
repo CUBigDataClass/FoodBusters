@@ -92,9 +92,16 @@ export class LeafMapComponent implements OnInit {
     complete: () => console.log('Observer.got a complete notification'),
   };
 
+  nightlifeObserver = {
+    next: x => this.UpdateNightlife(x),
+    error: err => console.log('Observer got an error: ' + err),
+    complete: () => console.log('Observer.got a complete notification'),
+  };
+
   constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService)
   {
     this.business = [];
+    this.nightlife = [];
     this.city = 'boulder';
 
   }
@@ -120,30 +127,30 @@ export class LeafMapComponent implements OnInit {
 
 
 
-  // //function to get the night life
-  // getNightlife(city): void {
-  //   this.yelpService.getNightlife(city)
-  //   .subscribe(data => {
-  //     this.nightlife = data;
-  //     console.log(this.nightlife);
-  //   },
-  //   error => {
-  //     console.log(error);
-  //   });
-  // }
+  //function to get the night life
+  getNightlife(city): void {
+    this.yelpService.getNightlife(city)
+    .subscribe(data => {
+      this.nightlife = data;
+      console.log(this.nightlife);
+    },
+    error => {
+      console.log(error);
+    });
+  }
 
 
-  // setCity(city): void{
-  //   this.city = city;
-  //   this.CityClickService.setCity(city);
-  //   console.log('this city is set ', city);
-  // }
+  setCity(city): void{
+    this.city = city;
+    this.CityClickService.setCity(city);
+    console.log('this city is set ', city);
+  }
 
-  // getCity() {
-  //   // this.city = this.CityClickService.getCity();
-  //   console.log('Get city: ', this.city)
-  //   return this.city;
-  // }
+  getCity() {
+    // this.city = this.CityClickService.getCity();
+    console.log('Get city: ', this.city)
+    return this.city;
+  }
 
   getCoordinate(city){
 
@@ -186,6 +193,39 @@ export class LeafMapComponent implements OnInit {
 
   }
 
+  UpdateNightlife(x) {
+    this.nightlife = x;
+    console.log('update business: ', this.nightlife);
+    this.CityClickService.setCity(this.city);
+    this.markers = [];
+
+    this.nightlife.forEach(function(a) {
+      // console.log(a);
+      var am = new this.LocationMarker([a.latitude, a.longitude], {title: a.name});
+
+      if(a.latitude != null && a.longitude != null){
+
+        am.setLocation(a);
+
+        am.on('click', function() {
+          this.infoPanelService.add(am.getLocation());
+          this.infoPanelService.showPanel();
+
+        }, this);
+
+        this.markers.push(am);
+      }
+    }, this);
+
+    if(this.markers.length !=0) {
+      L.featureGroup(this.markers).addTo(this.map);
+      this.CityClickService.add(this.nightlife);
+    } else {
+      console.log('no markers');
+    }
+
+  }
+
 
 
 
@@ -207,26 +247,25 @@ export class LeafMapComponent implements OnInit {
 
 
     //this is for the night life functionality
-    // this.yelpService.getNightlife('boulder')
-    // .subscribe(nightlife => {
-    //   nightlife.forEach(function(x) {
+    this.yelpService.getNightlife('boulder').subscribe(nightlife => {
+      nightlife.forEach(function(x) {
 
-    //     var ab = new this.LocationMarker2([x.latitude, x.longitude], {title: x.name});
-    //     if(x.latitude != null && x.longitude != null){
+        var ab = new this.LocationMarker2([x.latitude, x.longitude], {title: x.name});
+        if(x.latitude != null && x.longitude != null){
 
-    //       ab.setLocation(x);
+          ab.setLocation(x);
 
-    //       ab.on('click', function() {
-    //          this.infoPanelService.add(ab.getLocation());
-    //         this.infoPanelService.showPanel();
-    //       }, this);
+          ab.on('click', function() {
+             this.infoPanelService.add(ab.getLocation());
+            this.infoPanelService.showPanel();
+          }, this);
 
-    //       this.markers.push(ab);
-    //     }
-    //   }, this);
+          this.markers.push(ab);
+        }
+      }, this);
 
-    //   L.featureGroup(this.markers).addTo(this.map);
-    // });
+      L.featureGroup(this.markers).addTo(this.map);
+    });
 
   }
 
@@ -260,28 +299,28 @@ export class LeafMapComponent implements OnInit {
 
 
 
-    // this.yelpService.getNightlife(this.getCity())
-    // .subscribe(nightlife => {
-    //   nightlife.forEach(function(x) {
+    this.yelpService.getNightlife(this.getCity())
+    .subscribe(nightlife => {
+      nightlife.forEach(function(x) {
 
-    //     var am = new this.LocationMarker2([x.latitude, x.longitude], {title: x.name});
-    //     if(x.latitude != null && x.longitude != null){
+        var am = new this.LocationMarker2([x.latitude, x.longitude], {title: x.name});
+        if(x.latitude != null && x.longitude != null){
 
-    //       am.setLocation(x);
+          am.setLocation(x);
 
-    //       am.on('click', function() {
-    //         this.infoPanelService.add(am.getLocation());
-    //         this.infoPanelService.showPanel();
-    //       }, this);
+          am.on('click', function() {
+            this.infoPanelService.add(am.getLocation());
+            this.infoPanelService.showPanel();
+          }, this);
 
 
 
-    //       this.markers.push(am);
-    //     }
-    //   }, this);
+          this.markers.push(am);
+        }
+      }, this);
 
-    //   L.featureGroup(this.markers).addTo(this.map);
-    // });
+      L.featureGroup(this.markers).addTo(this.map);
+    });
 
   }
 
@@ -290,7 +329,8 @@ export class LeafMapComponent implements OnInit {
     this.initMap();
     this.yelpService.getBusiness(this.city);
     this.yelpService.businessSource.subscribe(this.businessObserver)
-    // this.getNightlife(this.city);
+      this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver)
+    this.getNightlife(this.city);
 
   }
 }
