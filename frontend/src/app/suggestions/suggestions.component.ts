@@ -17,7 +17,7 @@ export class SuggestionsComponent implements OnInit {
   top3Businesses: Business[] = [];
   city:String
   constructor(public yelpService : YelpService, public cityClickService : CityClickService) {
-    this.city = 'boulder'
+    // this.city = 'boulder'
    }
    businessObserver = {
     next: x => this.Updatebusiness(x),

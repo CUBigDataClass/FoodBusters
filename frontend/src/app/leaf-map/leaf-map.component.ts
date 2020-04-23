@@ -213,7 +213,7 @@ export class LeafMapComponent implements OnInit {
 
     if(this.markers.length !=0) {
       L.featureGroup(this.markers).addTo(this.map);
-      this.CityClickService.add(this.nightlife);
+      // this.CityClickService.add(this.nightlife);
     } else {
       console.log('no markers');
     }
