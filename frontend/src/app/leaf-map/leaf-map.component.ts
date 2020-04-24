@@ -110,16 +110,16 @@ export class LeafMapComponent implements OnInit {
 
 
 
-  setCity(city): void{
-    this.city = city;
-    this.CityClickService.setCity(city);
-    console.log('this city is set ', city);
-  }
+  // setCity(city): void{
+  //   this.city = city;
+  //   this.CityClickService.setCity(city);
+  //   console.log('this city is set ', city);
+  // }
 
-  getCity() {
-    console.log('Get city: ', this.city)
-    return this.city;
-  }
+  // getCity() {
+  //   console.log('Get city: ', this.city)
+  //   return this.city;
+  // }
 
   getCoordinate(city){
     this.coordinates = this.CityClickService.getCity_Coordinates(city);
@@ -152,9 +152,6 @@ export class LeafMapComponent implements OnInit {
         this.markers.push(am);
       }
     }, this);
-
-    // L.layerGroup(this.markers).addTo(this.map);
-    
 
     if(this.markers.length !=0) {
       L.featureGroup(this.markers).addTo(this.map);
@@ -218,36 +215,7 @@ export class LeafMapComponent implements OnInit {
   }
 
 
-
-
-  // console.log("This city is clicked " + this.getCity());
-  initMap(): void {
-    // Setting location to Boulder
-    // if (this.markers != undefined) {
-    //   this.map.removeLayer(this.markers);
-    //   console.log("remove layer");
-    // };
-   
-    this.markers = [];
-    if(this.map) {
-      this.map.remove();
-    }
-
-    this.map = L.map('map').locate({setView: true, maxZoom:8});
-
-    var latLon = L.latLng(40.016984,-105.270546);
-    var bounds = latLon.toBounds(5000); // 10000 = metres
-    this.map.panTo(latLon).fitBounds(bounds);
-   
-    var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-    }).addTo(this.map)
-
-
-  }
-
-
-  CityMap(city): void {
+  private CityMap(city): void {
 
     // Setting location to Boulder
     this.city = city;
@@ -281,15 +249,6 @@ export class LeafMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    
-    // this.initMap();
     this.getSelectoption(this.option);
-    // this.yelpService.getBusiness(this.city);
-    // this.yelpService.getNightlife(this.city);
-    // this.yelpService.businessSource.subscribe(this.businessObserver);
-    // this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver);
-    
-
   }
 }
