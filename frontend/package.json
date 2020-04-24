@@ -24,6 +24,8 @@
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
     "@asymmetrik/ngx-leaflet": "^6.0.1",
+    "@types/leaflet-markercluster": "^1.0.3",
+    "@types/leaflet.markercluster": "^1.4.2",
     "leaflet": "^1.6.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

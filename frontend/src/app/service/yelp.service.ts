@@ -33,7 +33,7 @@ export class YelpService {
     this.http.get<Business[]>(this.BASE_URL + 'business/' + city)
     .subscribe(data => {
       this.business = data;
-      console.log('get business service ', this.business);
+      // console.log('get business service ', this.business);
       this.businessSource.next(this.business);
     })
   }
@@ -43,7 +43,7 @@ export class YelpService {
     this.http.get<Nightlife[]>(this.BASE_URL + 'nightlife/' + city)
     .subscribe(data => {
       this.nightLife = data;
-      console.log('get nightlife service ', this.nightLife);
+      // console.log('get nightlife service ', this.nightLife);
       this.nightlifeSource.next(this.nightLife);
     })
   }
