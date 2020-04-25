@@ -9,7 +9,7 @@ import { Nightlife } from '../nightlifeModel'
 export class InfoPanelService {
   show: boolean = false;
   business: Business = null;
-  nighLife: Nightlife = null;
+  nightLife: Nightlife = null;
   open: boolean = true;
   showPanel(): void {
       this.show = true;
@@ -26,6 +26,15 @@ export class InfoPanelService {
     this.business = business;
     // console.log(this.business);
   }
+
+
+  addNight(nightLife: Nightlife): void{
+    this.open = false;
+    this.nightLife = nightLife;
+    console.log("night life add ", this.nightLife);
+    
+  }
+
 
   constructor() { }
 }

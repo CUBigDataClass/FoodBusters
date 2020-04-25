@@ -1,9 +1,9 @@
 'use strict';
 
 
-const express = require('express');
-var bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require('./node_modules/express');
+var bodyParser = require('./node_modules/body-parser');
+const cors = require('./node_modules/cors/lib');
 
 
 const app = express();

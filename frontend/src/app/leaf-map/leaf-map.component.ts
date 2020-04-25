@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { YelpService, BusinessResponse } from '../service/yelp.service';
+import { YelpService } from '../service/yelp.service';
 import { Business } from '../businessModel';
 import { Nightlife } from '../nightlifeModel';
 
@@ -8,8 +8,6 @@ import { CityClickService } from '../service/city-click.service';
 import { InfoPanelService } from '../service/info-panel.service';
 import { NightLifeServiceService } from '../service/night-life-service.service';
 
-
-import { Router, Routes } from '@angular/router';
 
 
 
@@ -26,7 +24,6 @@ export class LeafMapComponent implements OnInit {
   nightlife: Nightlife[];
   private map: L.Map;
   markers: L.Marker[];
-  layerGroup : L.LayerGroup[];
   city:String;
   coordinates: object;
   // option: Boolean;
@@ -81,7 +78,7 @@ export class LeafMapComponent implements OnInit {
 
   });
 
-  // optionsList = ['Restaurants', 'nightlife', 'Food and Drink'];
+ 
   
 
 
@@ -161,14 +158,15 @@ export class LeafMapComponent implements OnInit {
       if(a.latitude != null && a.longitude != null){
         am.setLocation(a);
         am.on('click', function() {
-          this.infoPanelService.add(am.getLocation());
+          // console.log('click ', am.getLocation())
+          this.infoPanelService.addNight(am.getLocation());
           this.infoPanelService.showPanel();
         }, this);
    
         this.markers.push(am);
       }
     }, this);
-    // var group = L.layerGroup(this.markers).addTo(this.map);
+  
 
     if(this.markers.length !=0) {
       
@@ -188,12 +186,16 @@ export class LeafMapComponent implements OnInit {
       this.CityMap(this.city)
       this.yelpService.getBusiness(this.city);
       this.yelpService.businessSource.subscribe(this.businessObserver);
-    }
-    else  {
+      this.CityClickService.getRestaurantOnMap();
+      console.log('select option on business');
+    }else  {
+     
       // this.initMap();
       this.CityMap(this.city)
       this.yelpService.getNightlife(this.city);
       this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver);
+      this.CityClickService.getNightlifeOnMap();
+      console.log('select option on night life');
     }
   }
 

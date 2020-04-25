@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Business } from '../businessModel';
-import { Nightlife } from '../nightlifeModel';
+import { Nightlife } from '../nightlifeModel'
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,8 @@ export class CityClickService {
   city: String;
   city_coordinates = [];
   business: Business[] = [];
-  nightlife: Nightlife[] = [];
-  restaurant : boolean = true;
+  nightLife: Nightlife[];
+  restaurant: Boolean = true;
   constructor() {
     // this.city = 'boulder';
     this.city_coordinates = [{'boulder': {'lat' :40.016984, 'long':-105.270546}},
@@ -71,16 +71,19 @@ export class CityClickService {
 
 
   addNight(nightlife:any): void{
-    this.nightlife = nightlife;
+    this.nightLife = nightlife;
   } 
+
+
 
   getBusinessService(){
     return this.business;
   }
 
   getNightlifeService(){
-    return this.nightlife;
+    return this.nightLife;
   }
+
 
   getRestaurantOnMap(){
     return this.restaurant = true;

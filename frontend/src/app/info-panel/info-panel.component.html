@@ -4,19 +4,40 @@
     <app-suggestions></app-suggestions>
  </div>
  <div *ngIf=!infoPanelService.open> 
-  <span class="close" (click)="onClose()">&times;</span>
-  <mat-card>
-    <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
-    <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
+  <div *ngIf=CityClickService.restaurant>
+    <mat-card>
+    
+      <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
+      <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
 
-      <mat-card-content>
+        <mat-card-content>
 
-        {{infoPanelService.business.rating}} &#9733; ({{infoPanelService.business.review_count}})<br>
+          {{infoPanelService.business.rating}} &#9733; ({{infoPanelService.business.review_count}})<br>
 
-        {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
-        <span *ngIf="!infoPanelService.business.is_closed" style="color:green">Open</span>
-        <span *ngIf="infoPanelService.business.is_closed" style="color:red">Closed</span>
-        
-      </mat-card-content>
-    </mat-card>
+          {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
+          <span *ngIf="!infoPanelService.business.is_closed" style="color:green">Open</span>
+          <span *ngIf="infoPanelService.business.is_closed" style="color:red">Closed</span>
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div *ngIf=!CityClickService.restaurant>
+      <mat-card>
+        <mat-card-title><a [href]="infoPanelService.nightLife.event_site_url" target="_blank">{{infoPanelService.nightLife.name}}</a></mat-card-title>
+        <img mat-card-image class="resturantImg" [src]="infoPanelService.nightLife.image_url" alt="infoPanelService.nightLife.name" />
+  
+          <mat-card-content>
+  
+            Night Life Event: {{infoPanelService.nightLife.category}}  <br>
+
+            People Attend:     {{infoPanelService.nightLife.attending_count}}  <br>
+  
+            Cost: {{infoPanelService.nightLife.cost}} <br>
+
+            Location: {{infoPanelService.nightLife.location.address1}}<br>
+
+            
+          </mat-card-content>
+        </mat-card>
+      </div>
   </div>

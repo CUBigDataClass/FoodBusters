@@ -22,12 +22,11 @@ export class InfoPanelComponent implements OnInit {
     this.infoPanelService.add(business);
   }
 
-  	// add(nightlife: Nightlife):{
-  	// 	console.log(typeof nightlife);
-  	// 	this.NightLifeServiceService.add(nightlife);
+  	// addNightlife(nightlife: Nightlife): void{
+  	// 	this.infoPanelService.addNightlife(nightlife);
   	// }
 
-  constructor(public infoPanelService: InfoPanelService, public NightLifeServiceService:NightLifeServiceService,
+  constructor(public infoPanelService: InfoPanelService,
              public CityClickService : CityClickService) { }
 
 
