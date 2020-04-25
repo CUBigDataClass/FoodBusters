@@ -27,5 +27,15 @@ export class InfoPanelService {
     // console.log(this.business);
   }
 
+  addNightLife(nighLife: Nightlife): void{
+    this.open = false;
+    this.nighLife = nighLife;
+  }
+
+  // addNightLife(nighLife: Nightlife): void{
+  //   this.open = false;
+  //   this.nighLife = nighLife;
+  // }
+
   constructor() { }
 }
