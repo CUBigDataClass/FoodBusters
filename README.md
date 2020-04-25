@@ -16,7 +16,7 @@ Frontend
 
 > ng serve or node start
 
-Go to  `http://localhost:4200/`
+Go to  `http://3.86.151.156:4200/`
 
 Backend
 
@@ -24,7 +24,7 @@ Backend
 
 > npm start
 
-Go to  `http://localhost:3000/business/ + <city>`
+Go to  `http://3.86.151.156:3000/business/ + <city>`
 
 if something error, you need to install
 
@@ -43,7 +43,7 @@ if something error, you need to install
 
 > docker-compose -d up
 
-Go to  `http://localhost:8000/`
+Go to  `http://3.86.151.156:8000/`
 
 Stops Containers:
 

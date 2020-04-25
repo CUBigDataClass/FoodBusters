@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // mongoose connection
 // mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost/yelpApiDb', {
+// mongoose.connect('mongodb://3.86.151.156/yelpApiDb', {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true
 // });
@@ -41,7 +41,7 @@ app.use('/', restaurantRouter);
 
 
 
-//run on localhost port 3000
+//run on 3.86.151.156 port 3000
 app.listen(PORT, () => 
     console.log(`Your server is running on port ${PORT}`)
 );

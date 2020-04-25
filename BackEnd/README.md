@@ -10,7 +10,7 @@ Then to run the server:
 
 > npm start
 
-Go to `http://localhost:3000/business/ + "city name"`
+Go to `http://3.86.151.156:3000/business/ + "city name"`
 
 How to build and run in Docker
 
@@ -20,4 +20,4 @@ How to build and run in Docker
 
 > docker-compose up -d app
 
-Then go to `http://localhost:3000/business/ + "city name"`
+Then go to `http://3.86.151.156:3000/business/ + "city name"`
