@@ -65,22 +65,24 @@ export class LeafMapComponent implements OnInit {
 
   });
 
-    //Setting up markers for Nightlife
-    LocationMarker2 = L.Marker.extend({
+  //Setting up markers for Nightlife
+  LocationMarker2 = L.Marker.extend({
 
-      options: {
-        icon: this.Icon2
-      },
-  
-      setLocation: function(nightlife: Nightlife) {
-        this.nightlife = nightlife;
-      },
-  
-      getLocation: function(): Nightlife{
-        return this.nightlife;
-      },
-  
-    });
+    options: {
+      icon: this.Icon2
+    },
+
+    setLocation: function(nightlife: Nightlife) {
+      this.nightlife = nightlife;
+    },
+
+    getLocation: function(): Nightlife{
+      return this.nightlife;
+    },
+
+  });
+
+  // optionsList = ['Restaurants', 'nightlife', 'Food and Drink'];
   
 
 
@@ -109,25 +111,11 @@ export class LeafMapComponent implements OnInit {
   }
 
 
-
-  // setCity(city): void{
-  //   this.city = city;
-  //   this.CityClickService.setCity(city);
-  //   console.log('this city is set ', city);
-  // }
-
-  // getCity() {
-  //   console.log('Get city: ', this.city)
-  //   return this.city;
-  // }
-
   getCoordinate(city){
     this.coordinates = this.CityClickService.getCity_Coordinates(city);
     return this.coordinates;
 
   }
-
-
 
   Updatebusiness(x) {
     this.business = x;
@@ -215,7 +203,7 @@ export class LeafMapComponent implements OnInit {
   }
 
 
-  private CityMap(city): void {
+  CityMap(city): void {
 
     // Setting location to Boulder
     this.city = city;
