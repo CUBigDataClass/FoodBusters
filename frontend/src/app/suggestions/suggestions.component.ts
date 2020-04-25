@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { YelpService } from '../service/yelp.service';
 import { Business } from '../businessModel';
 import { CityClickService } from '../service/city-click.service';
+import { Nightlife } from '../nightlifeModel'
+import { LeafMapComponent } from '../leaf-map/leaf-map.component';
+import { NightLifeServiceService } from '../service/night-life-service.service';
 
 
 @Component({
@@ -15,19 +18,43 @@ export class SuggestionsComponent implements OnInit {
   //create object for business
   business: Business[];
   top3Businesses: Business[] = [];
-  city:String
-  constructor(public yelpService : YelpService, public cityClickService : CityClickService) {
-    // this.city = 'boulder'
-   }
+  nightlife: Nightlife[] = [];
+  top3Nightlife: Nightlife[] = [];
+  city:String;
+  isNightlife: Boolean = false;
+  _subscription:any;
+
+  constructor(public yelpService : YelpService, public cityClickService : CityClickService, private NightLifeServiceService: NightLifeServiceService) {
+    this.isNightlife = NightLifeServiceService.isNightlife;
+    this._subscription = NightLifeServiceService.isNightlifeChange.subscribe((value) => { 
+      console.log("the new suggestions value is:", value);
+      this.isNightlife = value; 
+      this.getSelectoption();
+    });
+  }
    businessObserver = {
     next: x => this.Updatebusiness(x),
     error: err => console.log('Observer got an error: ' + err),
     complete: () => console.log('Observer.got a complete notification'),
   };
 
+  nightlifeObserver = {
+    next: x => this.UpdateNightlife(x),
+    error: err => console.log('Observer got an error: ' + err),
+    complete: () => console.log('Observer.got a complete notification'),
+  };
+
   Updatebusiness(x) {
     this.business = x;
-    this.getSuggestions(this.city);
+    this.isNightlife = false;
+    this.getSuggestions(this.city,false);
+  }
+
+  UpdateNightlife(x) {
+    this.nightlife = x;
+    this.isNightlife = true;
+    console.log('update nightlife: ', this.nightlife);
+    this.getSuggestions(this.city,true);
   }
 
 
@@ -38,34 +65,91 @@ export class SuggestionsComponent implements OnInit {
     // this.sortBusinessesByRating();
     // this.top3Businesses = this.business.slice(0,3);
     // console.log('Top3Businesses: ',this.top3Businesses);
-    this.sortBusinessesByRating();
+    this.sortBusinessesByRating(false);
+
+  }
+
+  getSearchNightlife(city){
+   
+    // this.nightlife = this.cityClickService.getNightlifeService();
+    console.log("nitelife",this.nightlife);
+    this.sortBusinessesByRating(true);
+    this.top3Nightlife = this.nightlife.slice(0,3);
+    console.log("top3",this.top3Nightlife);
+    // this.sortBusinessesByRating();
+    // this.top3Businesses = this.business.slice(0,3);
+    // console.log('Top3Businesses: ',this.top3Businesses);
+    
 
   }
 
 
-  getSuggestions(city): void{
+  getSuggestions(city, isNightlife): void{
     this.city = this.cityClickService.getCity();
-    this.getSearchBusiness(this.city);
-    return this.getSearchBusiness(this.city);
+    if(isNightlife) {
+      this.getSearchNightlife(this.city);
+    }
+    else {
+      this.getSearchBusiness(this.city);
+    }
   }
 
-  private sortBusinessesByRating(): void {
-    this.business.sort((n1,n2) => {
-          if (n1.rating < n2.rating) {
-              return 1;
-          }
-      
-          else if (n1.rating > n2.rating) {
-              return -1;
-          }
-          else return 0;
+  getSelectoption(): void{
+    if(!this.isNightlife){
+      this.yelpService.getBusiness(this.city);
+      this.yelpService.businessSource.subscribe(this.businessObserver);
+      console.log('select option on business');
+      this.getSuggestions(this.city,false);
+    }
+    else  {
+
+      this.yelpService.getNightlife(this.city);
+      this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver);
+      console.log('select option on night life');
+      this.getSuggestions(this.city,true);
+    }
+  }
+
+  formatDate(date){
+    console.log("in formateDate");
+    Date.parse(date);
+  }
+
+  private sortBusinessesByRating(isNightlife): void {
+    if(isNightlife){
+      this.nightlife.sort((n1,n2) => {
+        if (n1.interested_count < n2.interested_count) {
+            return 1;
+        }
+    
+        else if (n1.interested_count > n2.interested_count) {
+            return -1;
+        }
+        else return 0;
       });
+    }
+    else {
+      this.business.sort((n1,n2) => {
+        if (n1.rating < n2.rating) {
+            return 1;
+        }
+    
+        else if (n1.rating > n2.rating) {
+            return -1;
+        }
+        else return 0;
+      });
+    }
   }
 
   ngOnInit(): void {
-    this.yelpService.getBusiness(this.city);
-    this.yelpService.businessSource.subscribe(this.businessObserver)
-    this.getSuggestions(this.city);
+
+    this.getSelectoption();
   }
+
+  ngOnDestroy() {
+    //prevent memory leak when component destroyed
+     this._subscription.unsubscribe();
+   }
 
 }

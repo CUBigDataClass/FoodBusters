@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InfoPanelService } from '../service/info-panel.service';
 import {Business} from '../businessModel';
 import { YelpService } from '../service/yelp.service';
-import { NightLifeServiceService } from '../night-life-service.service';
+import { NightLifeServiceService } from '../service/night-life-service.service';
 import { Nightlife } from '../nightlifeModel';
 import { CityClickService } from '../service/city-click.service';
 

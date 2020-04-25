@@ -1,11 +1,10 @@
  <div class="infoPanel">  
-  <span class="close" (click)="onClose()">&times;</span>
  
   <div *ngIf=infoPanelService.open> 
     <app-suggestions></app-suggestions>
  </div>
  <div *ngIf=!infoPanelService.open> 
-
+  <span class="close" (click)="onClose()">&times;</span>
   <mat-card>
     <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
     <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />

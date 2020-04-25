@@ -67,29 +67,31 @@ export class CityClickService {
 
   add(business:any): void{
     this.business = business;
-    console.log( "city click add busisness ", this.business);
+    // console.log( "city click add busisness ", this.business);
   } 
 
 
   addNight(nightlife:any): void{
     this.nightlife = nightlife;
-    console.log( "city click add busisness ", this.nightlife);
+    console.log( "city click add nightlife ", this.nightlife);
   } 
 
   getBusinessService(){
-    console.log( " get business city click ", this.business);
     return this.business;
-    
+  }
+
+  getNightlifeService(){
+    return this.nightlife;
   }
 
   getRestaurantOnMap(){
-    console.log( " get restaurant on map ", this.restaurant);
+    // console.log( " get restaurant on map ", this.restaurant);
     return this.restaurant = true;
    
   }
 
   getNightlifeOnMap() {
-    console.log( " get night life on map ", this.restaurant);
+    // console.log( " get night life on map ", this.restaurant);
     return this.restaurant = false;
    
   }

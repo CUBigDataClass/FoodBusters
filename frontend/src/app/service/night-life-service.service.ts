@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Nightlife } from './nightlifeModel'
+import { Nightlife } from '../nightlifeModel'
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -8,6 +9,9 @@ import { Nightlife } from './nightlifeModel'
 export class NightLifeServiceService {
   show: boolean = false;
   nighLife: Nightlife = null;
+  isNightlife: Boolean;
+  isNightlifeChange: Subject<Boolean> = new Subject<Boolean>();
+
   showPanel(): void {
       this.show = true;
   }
@@ -20,5 +24,12 @@ export class NightLifeServiceService {
     console.log(this.nighLife);
   }
 
-  constructor() { }
+  change(value) {
+    this.isNightlife = value;
+    this.isNightlifeChange.next(this.isNightlife);
+  }
+
+  constructor() { 
+    this.isNightlife = false;
+  }
 }
