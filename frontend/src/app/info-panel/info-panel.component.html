@@ -4,6 +4,7 @@
     <app-suggestions></app-suggestions>
  </div>
  <div *ngIf=!infoPanelService.open> 
+  <span class="close" (click)="onClose()">&times;</span>
   <div *ngIf=CityClickService.restaurant>
     <mat-card>
     
