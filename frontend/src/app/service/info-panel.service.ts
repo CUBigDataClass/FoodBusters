@@ -27,12 +27,14 @@ export class InfoPanelService {
     // console.log(this.business);
   }
 
+
   addNight(nightLife: Nightlife): void{
     this.open = false;
     this.nightLife = nightLife;
     console.log("night life add ", this.nightLife);
     
   }
+
 
   constructor() { }
 }
