@@ -17,15 +17,12 @@ export class RefreshComponent implements OnInit {
 
   constructor(private _location: Location, private _router: Router, public cityClickService : CityClickService,
               public yelpService : YelpService, private nightlifeService: NightLifeServiceService) { 
-    console.log('constructor ran');
     this._subscription = nightlifeService.isNightlifeChange.subscribe((value) => { 
-      console.log("the new value is:", value);
       this.isNightlife = value; 
     });
   }
 
   setIsNightlife(option:boolean) {
-    console.log("setisnightlife",option);
     this.nightlifeService.change(option);
     this.isNightlife = option;
   }

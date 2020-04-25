@@ -35,31 +35,31 @@ export class CityClickService {
     if( city == 'boulder')
     {
         coor = this.city_coordinates[0];
-        console.log('coor in service', coor['boulder']);
+        // console.log('coor in service', coor['boulder']);
     
     }
     if( city == 'denver')
     {
         coor = this.city_coordinates[1];
-        console.log('coor in service', coor['denver']);
+        // console.log('coor in service', coor['denver']);
     
     }
     if( city == 'new_york')
     {
         coor = this.city_coordinates[2];
-        console.log('coor in service', coor['new_york']);
+        // console.log('coor in service', coor['new_york']);
     
     }
     if( city == 'los_angeles')
     {
         coor = this.city_coordinates[3];
-        console.log('coor in service', coor['los_angeles']);
+        // console.log('coor in service', coor['los_angeles']);
     
     }
     if( city == 'seattle')
     {
         coor = this.city_coordinates[4];
-        console.log('coor in service', coor['seattle']);
+        // console.log('coor in service', coor['seattle']);
     
     }
     return coor[city];
@@ -67,13 +67,11 @@ export class CityClickService {
 
   add(business:any): void{
     this.business = business;
-    // console.log( "city click add busisness ", this.business);
   } 
 
 
   addNight(nightlife:any): void{
     this.nightlife = nightlife;
-    console.log( "city click add nightlife ", this.nightlife);
   } 
 
   getBusinessService(){
@@ -85,13 +83,11 @@ export class CityClickService {
   }
 
   getRestaurantOnMap(){
-    // console.log( " get restaurant on map ", this.restaurant);
     return this.restaurant = true;
    
   }
 
   getNightlifeOnMap() {
-    // console.log( " get night life on map ", this.restaurant);
     return this.restaurant = false;
    
   }

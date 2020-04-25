@@ -6,6 +6,8 @@ import { Nightlife } from '../nightlifeModel';
 
 import { CityClickService } from '../service/city-click.service';
 import { InfoPanelService } from '../service/info-panel.service';
+import { NightLifeServiceService } from '../service/night-life-service.service';
+
 
 import { Router, Routes } from '@angular/router';
 
@@ -19,11 +21,6 @@ import { Router, Routes } from '@angular/router';
 
 export class LeafMapComponent implements OnInit {
 
-
- //if(nightlife click)
- //else() : display restaurants
-
-
   //create object for business
   business: Business[];
   nightlife: Nightlife[];
@@ -32,7 +29,9 @@ export class LeafMapComponent implements OnInit {
   layerGroup : L.LayerGroup[];
   city:String;
   coordinates: object;
-  option: Boolean;
+  // option: Boolean;
+  _subscription: any;
+  isNightlife: Boolean;
 
   //Icon for Restaurants
   Icon = L.icon({
@@ -99,15 +98,16 @@ export class LeafMapComponent implements OnInit {
     complete: () => console.log('Observer.got a complete notification'),
   };
 
-  constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, public CityClickService : CityClickService)
+  constructor(public infoPanelService: InfoPanelService, public yelpService : YelpService, 
+    public CityClickService : CityClickService, private nightlifeService: NightLifeServiceService)
   {
-   
+    this._subscription = nightlifeService.isNightlifeChange.subscribe((value) => { 
+      this.isNightlife = value; 
+      this.getSelectOption();
+    });
     this.business = [];
     this.nightlife = [];
     this.city = 'boulder';
-    this.option = true
-    // this.markers = [];
-    console.log('leaf map ', this.city)
   }
 
 
@@ -124,7 +124,6 @@ export class LeafMapComponent implements OnInit {
     this.markers = [];
    
     this.business.forEach(function(a) {
-      // console.log(a);
       var am = new this.LocationMarker([a.coordinates['latitude'], a.coordinates['longitude']], {title: a.name});
 
       if(a.coordinates['latitude'] != null && a.coordinates['longitude'] != null){
@@ -155,8 +154,6 @@ export class LeafMapComponent implements OnInit {
     this.nightlife = x;
     console.log('update nightlife: ', this.nightlife);
     this.CityClickService.setCity(this.city);
-    
-    console.log('this marker in nightlife after remove ', this.markers)
     this.markers = [];
 
     this.nightlife.forEach(function(a) {
@@ -184,21 +181,19 @@ export class LeafMapComponent implements OnInit {
   }
     
 
-  getSelectoption(x: Boolean): void{
-    this.option = x;
-    if(this.option){
+
+  getSelectOption(): void{
+    if(!this.isNightlife){
       // this.initMap();
       this.CityMap(this.city)
       this.yelpService.getBusiness(this.city);
       this.yelpService.businessSource.subscribe(this.businessObserver);
-      console.log('select option on business');
-    }else  {
-     
+    }
+    else  {
       // this.initMap();
       this.CityMap(this.city)
       this.yelpService.getNightlife(this.city);
       this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver);
-      console.log('select option on night life');
     }
   }
 
@@ -208,7 +203,7 @@ export class LeafMapComponent implements OnInit {
     // Setting location to Boulder
     this.city = city;
     this.CityClickService.setCity(city)
-    if(this.option) {
+    if(!this.isNightlife) {
       this.yelpService.getBusiness(this.city);
     } else{
       this.yelpService.getNightlife(this.city);
@@ -223,8 +218,8 @@ export class LeafMapComponent implements OnInit {
     }
 
     this.map = L.map('map').locate({setView: true, maxZoom:8});
-    console.log( ' latitude ', this.coordinates['lat']);
-    console.log( ' long ', this.coordinates['long']);
+    // console.log( ' latitude ', this.coordinates['lat']);
+    // console.log( ' long ', this.coordinates['long']);
     var latLon = L.latLng(this.coordinates['lat'], this.coordinates['long']);
     var bounds = latLon.toBounds(5000); // 10000 = metres
     this.map.panTo(latLon).fitBounds(bounds);
@@ -237,6 +232,11 @@ export class LeafMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSelectoption(this.option);
+    this.getSelectOption();
   }
+
+  ngOnDestroy() {
+    //prevent memory leak when component destroyed
+     this._subscription.unsubscribe();
+   }
 }

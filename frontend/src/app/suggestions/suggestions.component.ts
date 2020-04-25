@@ -27,9 +27,8 @@ export class SuggestionsComponent implements OnInit {
   constructor(public yelpService : YelpService, public cityClickService : CityClickService, private NightLifeServiceService: NightLifeServiceService) {
     this.isNightlife = NightLifeServiceService.isNightlife;
     this._subscription = NightLifeServiceService.isNightlifeChange.subscribe((value) => { 
-      console.log("the new suggestions value is:", value);
       this.isNightlife = value; 
-      this.getSelectoption();
+      this.getSelectOption();
     });
   }
    businessObserver = {
@@ -53,7 +52,6 @@ export class SuggestionsComponent implements OnInit {
   UpdateNightlife(x) {
     this.nightlife = x;
     this.isNightlife = true;
-    console.log('update nightlife: ', this.nightlife);
     this.getSuggestions(this.city,true);
   }
 
@@ -62,25 +60,13 @@ export class SuggestionsComponent implements OnInit {
    
     this.business = this.cityClickService.getBusinessService();
     this.top3Businesses = this.business.slice(0,3);
-    // this.sortBusinessesByRating();
-    // this.top3Businesses = this.business.slice(0,3);
-    // console.log('Top3Businesses: ',this.top3Businesses);
     this.sortBusinessesByRating(false);
 
   }
 
   getSearchNightlife(city){
-   
-    // this.nightlife = this.cityClickService.getNightlifeService();
-    console.log("nitelife",this.nightlife);
     this.sortBusinessesByRating(true);
     this.top3Nightlife = this.nightlife.slice(0,3);
-    console.log("top3",this.top3Nightlife);
-    // this.sortBusinessesByRating();
-    // this.top3Businesses = this.business.slice(0,3);
-    // console.log('Top3Businesses: ',this.top3Businesses);
-    
-
   }
 
 
@@ -94,25 +80,17 @@ export class SuggestionsComponent implements OnInit {
     }
   }
 
-  getSelectoption(): void{
+  getSelectOption(): void{
     if(!this.isNightlife){
       this.yelpService.getBusiness(this.city);
       this.yelpService.businessSource.subscribe(this.businessObserver);
-      console.log('select option on business');
       this.getSuggestions(this.city,false);
     }
     else  {
-
       this.yelpService.getNightlife(this.city);
       this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver);
-      console.log('select option on night life');
       this.getSuggestions(this.city,true);
     }
-  }
-
-  formatDate(date){
-    console.log("in formateDate");
-    Date.parse(date);
   }
 
   private sortBusinessesByRating(isNightlife): void {
@@ -121,7 +99,7 @@ export class SuggestionsComponent implements OnInit {
         if (n1.interested_count < n2.interested_count) {
             return 1;
         }
-    
+  
         else if (n1.interested_count > n2.interested_count) {
             return -1;
         }
@@ -144,7 +122,7 @@ export class SuggestionsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getSelectoption();
+    this.getSelectOption();
   }
 
   ngOnDestroy() {
