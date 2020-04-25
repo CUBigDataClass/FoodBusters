@@ -1,13 +1,11 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { YelpService, BusinessResponse } from '../service/yelp.service';
+import { YelpService } from '../service/yelp.service';
 import { Business } from '../businessModel';
 import { Nightlife } from '../nightlifeModel';
 
 import { CityClickService } from '../service/city-click.service';
 import { InfoPanelService } from '../service/info-panel.service';
-
-import { Router, Routes } from '@angular/router';
 
 
 
@@ -160,7 +158,7 @@ export class LeafMapComponent implements OnInit {
       if(a.latitude != null && a.longitude != null){
         am.setLocation(a);
         am.on('click', function() {
-          console.log('click ', am.getLocation())
+          // console.log('click ', am.getLocation())
           this.infoPanelService.addNight(am.getLocation());
           this.infoPanelService.showPanel();
         }, this);
@@ -168,7 +166,7 @@ export class LeafMapComponent implements OnInit {
         this.markers.push(am);
       }
     }, this);
-    // var group = L.layerGroup(this.markers).addTo(this.map);
+  
 
     if(this.markers.length !=0) {
       

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoPanelService } from '../service/info-panel.service';
 import {Business} from '../businessModel';
-import { YelpService } from '../service/yelp.service';
-import { NightLifeServiceService } from '../night-life-service.service';
-import { Nightlife } from '../nightlifeModel';
 import { CityClickService } from '../service/city-click.service';
 
 
@@ -26,7 +23,7 @@ export class InfoPanelComponent implements OnInit {
   	// 	this.infoPanelService.addNightlife(nightlife);
   	// }
 
-  constructor(public infoPanelService: InfoPanelService, public NightLifeServiceService:NightLifeServiceService,
+  constructor(public infoPanelService: InfoPanelService,
              public CityClickService : CityClickService) { }
 
 
