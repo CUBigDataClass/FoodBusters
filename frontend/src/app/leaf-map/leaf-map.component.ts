@@ -27,7 +27,7 @@ export class LeafMapComponent implements OnInit {
   //create object for business
   business: Business[];
   nightlife: Nightlife[];
-  private map: L.Map;
+  public map: L.Map;
   markers: L.Marker[];
   city:String;
   coordinates: object;
@@ -221,10 +221,6 @@ export class LeafMapComponent implements OnInit {
   }
 
 
-
-
-
-
   // console.log("This city is clicked " + this.getCity());
   initMap(): void {
     // Setting location to Boulder
@@ -269,9 +265,6 @@ export class LeafMapComponent implements OnInit {
     var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     }).addTo(this.map)
-
-
-
 
 
     // this.yelpService.getNightlife(this.getCity())
