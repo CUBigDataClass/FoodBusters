@@ -22,7 +22,7 @@ COPY ./dev/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
-EXPOSE 4200 
+EXPOSE 49153 
 
 CMD ["nginx", "-g", "daemon off;"]
 

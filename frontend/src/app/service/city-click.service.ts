@@ -73,7 +73,7 @@ export class CityClickService {
 
   addNight(nightlife:any): void{
     this.nightlife = nightlife;
-    console.log( "city click add busisness ", this.nightlife);
+    console.log( "city click add nightlife ", this.nightlife);
   } 
 
   getBusinessService(){
@@ -84,13 +84,13 @@ export class CityClickService {
 
   getRestaurantOnMap(){
     console.log( " get restaurant on map ", this.restaurant);
-    return this.restaurant = true;
+    this.restaurant = true;
    
   }
 
   getNightlifeOnMap() {
     console.log( " get night life on map ", this.restaurant);
-    return this.restaurant = false;
+    this.restaurant = false;
    
   }
 

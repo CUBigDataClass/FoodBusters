@@ -1,6 +1,6 @@
-const express = require('express')
+const express = require('../node_modules/express')
 const router = express.Router()
-const yelp = require('yelp-fusion');
+const yelp = require('../node_modules/yelp-fusion/lib');
 
 
 const client = yelp.client('EzAjSA7b8ecNs1WVtPdlx9N369MlNfD1WXqS2vlvXoY8eOu_YzS7GJhYTWDusfU9b-DexQCHRgcrCF2lVkr_AEqaS9jYistvozIVBP4zrlb2Kf_na45Lhj70p7JlXnYx');

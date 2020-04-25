@@ -20,16 +20,12 @@ import { Router, Routes } from '@angular/router';
 export class LeafMapComponent implements OnInit {
 
 
- //if(nightlife click)
- //else() : display restaurants
-
 
   //create object for business
   business: Business[];
   nightlife: Nightlife[];
   private map: L.Map;
   markers: L.Marker[];
-  layerGroup : L.LayerGroup[];
   city:String;
   coordinates: object;
   option: Boolean;
@@ -82,7 +78,7 @@ export class LeafMapComponent implements OnInit {
 
   });
 
-  // optionsList = ['Restaurants', 'nightlife', 'Food and Drink'];
+ 
   
 
 
@@ -164,7 +160,8 @@ export class LeafMapComponent implements OnInit {
       if(a.latitude != null && a.longitude != null){
         am.setLocation(a);
         am.on('click', function() {
-          this.infoPanelService.add(am.getLocation());
+          console.log('click ', am.getLocation())
+          this.infoPanelService.addNight(am.getLocation());
           this.infoPanelService.showPanel();
         }, this);
    
@@ -191,6 +188,7 @@ export class LeafMapComponent implements OnInit {
       this.CityMap(this.city)
       this.yelpService.getBusiness(this.city);
       this.yelpService.businessSource.subscribe(this.businessObserver);
+      this.CityClickService.getRestaurantOnMap();
       console.log('select option on business');
     }else  {
      
@@ -198,6 +196,7 @@ export class LeafMapComponent implements OnInit {
       this.CityMap(this.city)
       this.yelpService.getNightlife(this.city);
       this.yelpService.nightlifeSource.subscribe(this.nightlifeObserver);
+      this.CityClickService.getNightlifeOnMap();
       console.log('select option on night life');
     }
   }
