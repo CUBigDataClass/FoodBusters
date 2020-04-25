@@ -4,6 +4,7 @@ import {Business} from '../businessModel';
 import { YelpService } from '../service/yelp.service';
 import { NightLifeServiceService } from '../night-life-service.service';
 import { Nightlife } from '../nightlifeModel';
+import { CityClickService } from '../service/city-click.service';
 
 
 
@@ -15,8 +16,9 @@ import { Nightlife } from '../nightlifeModel';
 
 export class InfoPanelComponent implements OnInit {
 
+
+
    add(business: Business): void {
-    console.log(typeof business);
     this.infoPanelService.add(business);
   }
 
@@ -25,9 +27,14 @@ export class InfoPanelComponent implements OnInit {
   	// 	this.NightLifeServiceService.add(nightlife);
   	// }
 
-constructor(public infoPanelService: InfoPanelService, public NightLifeServiceService:NightLifeServiceService) { }
+  constructor(public infoPanelService: InfoPanelService, public NightLifeServiceService:NightLifeServiceService,
+             public CityClickService : CityClickService) { }
 
 
+  onClose() {
+    console.log("onClose()");
+    this.infoPanelService.hidePanel();
+  }
 ngOnInit(): void {
 
   }

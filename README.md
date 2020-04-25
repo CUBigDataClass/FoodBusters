@@ -41,9 +41,9 @@ if something error, you need to install
 
 > docker-compose build
 
-> docker-compose -d up
+> docker-compose up -d
 
-Go to  `http://localhost:8000/`
+Go to  `http://localhost:80/`
 
 Stops Containers:
 

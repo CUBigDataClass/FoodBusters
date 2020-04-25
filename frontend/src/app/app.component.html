@@ -21,7 +21,9 @@ crossorigin=""></script>
 
   <div class="right-half">
     <div class="infoPanel">
+      <div @ipInsertRemoveTrigger *ngIf="infoPanelService.show" id="infoPanelBox"></div>
       <app-info-panel></app-info-panel>
+      
       
     </div>
 

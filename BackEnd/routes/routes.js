@@ -77,7 +77,8 @@ router.get('/business/:city', async (req, res) => {
         const cityString = city.toString();
         const searchRequest = {
             term:'restaurants',
-            location: searchCity[cityString]
+            location: searchCity[cityString],
+            limit: 20
             };
         //get yelp api for each city
         client.search(searchRequest).then(response => {
@@ -128,7 +129,7 @@ router.get('/nightlife/:city', async (req, res) => {
 
 
 //GET business Detail
-router.get('/business/:city/:id', async (req, res) => {
+router.get('/business/city/:id', async (req, res) => {
     try{
         var id = req.params.id;
         const idString = id.toString();

@@ -17,7 +17,7 @@ export class SuggestionsComponent implements OnInit {
   top3Businesses: Business[] = [];
   city:String
   constructor(public yelpService : YelpService, public cityClickService : CityClickService) {
-    this.city = 'boulder'
+    // this.city = 'boulder'
    }
    businessObserver = {
     next: x => this.Updatebusiness(x),
@@ -35,8 +35,11 @@ export class SuggestionsComponent implements OnInit {
    
     this.business = this.cityClickService.getBusinessService();
     this.top3Businesses = this.business.slice(0,3);
-
+    // this.sortBusinessesByRating();
+    // this.top3Businesses = this.business.slice(0,3);
+    // console.log('Top3Businesses: ',this.top3Businesses);
     this.sortBusinessesByRating();
+
   }
 
 

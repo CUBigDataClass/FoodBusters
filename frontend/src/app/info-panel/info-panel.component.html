@@ -1,20 +1,23 @@
-<div *ngIf=!infoPanelService.business>
-  <app-suggestions></app-suggestions>
-</div>
-<div *ngIf=infoPanelService.business>
+ <div class="infoPanel">  
+  <span class="close" (click)="onClose()">&times;</span>
+ 
+  <div *ngIf=infoPanelService.open> 
+    <app-suggestions></app-suggestions>
+ </div>
+ <div *ngIf=!infoPanelService.open> 
+
   <mat-card>
     <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
     <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
 
-    <mat-card-content>
+      <mat-card-content>
 
-      {{infoPanelService.business.rating}} &#9733; ({{infoPanelService.business.review_count}})<br>
+        {{infoPanelService.business.rating}} &#9733; ({{infoPanelService.business.review_count}})<br>
 
-      {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
-      <span *ngIf="!infoPanelService.business.is_closed" style="color:green">Open</span>
-      <span *ngIf="infoPanelService.business.is_closed" style="color:red">Closed</span>
-      //close button
-      <button onclick="self.close()">Close</button>
-    </mat-card-content>
-  </mat-card>
-</div>
+        {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
+        <span *ngIf="!infoPanelService.business.is_closed" style="color:green">Open</span>
+        <span *ngIf="infoPanelService.business.is_closed" style="color:red">Closed</span>
+        
+      </mat-card-content>
+    </mat-card>
+  </div>
