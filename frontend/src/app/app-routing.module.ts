@@ -10,11 +10,7 @@ const routes: Routes = [{
 }, {
 	path: "refresh",
 	component: RefreshComponent
-}, 
-// {
-// 	path: "**",
-// 	redirectTo: 'refresh'
-// }
+}
 ];
 
 @NgModule({
