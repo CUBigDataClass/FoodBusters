@@ -28,16 +28,12 @@
         <img mat-card-image class="resturantImg" [src]="infoPanelService.nightLife.image_url" alt="infoPanelService.nightLife.name" />
   
           <mat-card-content>
-  
-            Night Life Event: {{infoPanelService.nightLife.category}}  <br>
+            Category: {{infoPanelService.nightLife.category.toUpperCase()}}<br> 
+            {{infoPanelService.nightLife.location.address1}} <br>
+            {{infoPanelService.nightLife.attending_count}} attending ({{infoPanelService.nightLife.interested_count}} interested)<br>
+            {{infoPanelService.nightLife.description}}<br>
 
-            People Attend:     {{infoPanelService.nightLife.attending_count}}  <br>
-  
-            Cost: {{infoPanelService.nightLife.cost}} <br>
-
-            Location: {{infoPanelService.nightLife.location.address1}}<br>
-
-            
+ <span *ngIf="infoPanelService.nightLife.is_canceled" style="color:red">CANCELED</span>
           </mat-card-content>
         </mat-card>
       </div>
