@@ -4,10 +4,10 @@
     <app-suggestions></app-suggestions>
  </div>
  <div *ngIf=!infoPanelService.open> 
-  <span class="close" (click)="onClose()">&times;</span>
+  
   <div *ngIf=CityClickService.restaurant>
     <mat-card>
-    
+      <span class="close" (click)="onClose()">&times;</span>
       <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
       <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" />
 
@@ -35,6 +35,7 @@
     </div>
     <div *ngIf=!CityClickService.restaurant>
       <mat-card>
+        <span class="close" (click)="onClose()">&times;</span>
         <mat-card-title><a [href]="infoPanelService.nightLife.event_site_url" target="_blank">{{infoPanelService.nightLife.name}}</a></mat-card-title>
         <img mat-card-image class="resturantImg" [src]="infoPanelService.nightLife.image_url" />
   
