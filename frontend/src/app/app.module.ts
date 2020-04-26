@@ -22,8 +22,7 @@ import { RefreshComponent } from './refresh/refresh.component';
     LeafMapComponent,
     SuggestionsComponent,
     InfoPanelComponent,
-    RefreshComponent,
-   
+    RefreshComponent,   
   ],
 
   imports: [
