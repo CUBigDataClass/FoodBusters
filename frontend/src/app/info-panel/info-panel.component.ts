@@ -5,6 +5,7 @@ import { YelpService } from '../service/yelp.service';
 import { NightLifeServiceService } from '../service/night-life-service.service';
 import { Nightlife } from '../nightlifeModel';
 import { CityClickService } from '../service/city-click.service';
+import{ Review } from '../reviewsModel';
 
 
 
@@ -16,26 +17,37 @@ import { CityClickService } from '../service/city-click.service';
 
 export class InfoPanelComponent implements OnInit {
 
+  reviews: Review[] = [];
+  business: Business;
 
 
    add(business: Business): void {
+     console.log("hi")
+     this.business = business;
     this.infoPanelService.add(business);
+    console.log("getReviews",this.infoPanelService.getReviews());
+    // this.getReviews(business.id);
   }
 
   	// addNightlife(nightlife: Nightlife): void{
   	// 	this.infoPanelService.addNightlife(nightlife);
   	// }
 
-  constructor(public infoPanelService: InfoPanelService,
-             public CityClickService : CityClickService) { }
+  constructor(public infoPanelService: InfoPanelService, public CityClickService : CityClickService, public yelpService: YelpService) { }
 
 
   onClose() {
     console.log("onClose()");
     this.infoPanelService.hidePanel();
   }
-ngOnInit(): void {
 
+  // getReviews(businessId: String){
+  //   this.yelpService.getReviews(businessId);
+  //   console.log("reviews:",this.reviews);
+  // }
+
+  ngOnInit(): void {
+    
   }
 
 }

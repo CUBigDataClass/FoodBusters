@@ -40,6 +40,10 @@
 	margin-right: auto;
 }
 
+.mat-card-subtitle{
+	margin-bottom: 5px;
+}
+
 a {
     color: rgb(73, 73, 73);
     text-decoration: none;
@@ -47,6 +51,11 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.review {
+    border: thin;
+    border-color: black;
 }
 
 

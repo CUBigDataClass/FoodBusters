@@ -9,7 +9,7 @@
     <mat-card>
     
       <mat-card-title><a [href]="infoPanelService.business.url" target="_blank">{{infoPanelService.business.name}}</a></mat-card-title>
-      <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" alt="infoPanelService.business.name" />
+      <img mat-card-image class="resturantImg" [src]="infoPanelService.business.image_url" />
 
         <mat-card-content>
 
@@ -17,15 +17,26 @@
 
           {{infoPanelService.business.price}} - {{infoPanelService.business.categories[0].title}} - {{infoPanelService.business.location.address1}}<br>
           <span *ngIf="!infoPanelService.business.is_closed" style="color:green">Open</span>
-          <span *ngIf="infoPanelService.business.is_closed" style="color:red">Closed</span>
+          <span *ngIf="infoPanelService.business.is_closed" style="color:red">Closed</span><br>
+
+          
           
         </mat-card-content>
+        <mat-card-subtitle>Reviews</mat-card-subtitle>
+          <mat-card-content>
+            <div class="review" *ngFor="let r of infoPanelService.getReviews(); let i=index">
+              <div class="review">
+                <a [href]="r.url" target="_blank"><b>{{r.rating}} &#9733; - </b>{{r.text}} </a>
+                <hr *ngIf="i!=2">
+              </div>
+            </div>
+          </mat-card-content>
       </mat-card>
     </div>
     <div *ngIf=!CityClickService.restaurant>
       <mat-card>
         <mat-card-title><a [href]="infoPanelService.nightLife.event_site_url" target="_blank">{{infoPanelService.nightLife.name}}</a></mat-card-title>
-        <img mat-card-image class="resturantImg" [src]="infoPanelService.nightLife.image_url" alt="infoPanelService.nightLife.name" />
+        <img mat-card-image class="resturantImg" [src]="infoPanelService.nightLife.image_url" />
   
           <mat-card-content>
             Category: {{infoPanelService.nightLife.category.toUpperCase()}}<br> 
